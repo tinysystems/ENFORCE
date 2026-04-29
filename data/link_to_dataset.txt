@@ -1,0 +1,2 @@
+Librispeech dataset filtered by MFE with 1 sec samples: 
+https://drive.google.com/file/d/1tyENdLyk7LWdOLkDhh-YkZApnE-GKV-y/view?usp=share_link

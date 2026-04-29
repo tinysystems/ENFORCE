@@ -1,0 +1,374 @@
+Original dataset: (18578, 40, 40), classes: [0 1]
+Original class distribution: {0: 16264, 1: 2314}
+
+============================================================
+DATA DISTRIBUTION ANALYSIS
+============================================================
+Class distribution:
+Train: {0: 9758, 1: 1388}
+Val:   {0: 3253, 1: 463}
+Test:  {0: 3253, 1: 463}
+
+Data value ranges:
+Train: min=0.0000, max=1.0000, mean=0.5030
+Val:   min=0.0000, max=1.0000, mean=0.5001
+Test:  min=0.0000, max=1.0000, mean=0.5040
+
+Data shapes:
+Train: (11146, 40, 40, 1), Val: (3716, 40, 40, 1), Test: (3716, 40, 40, 1)
+
+Mean activation per sample:
+Train mean: 0.5030 ± 0.2454
+Val mean:   0.5001 ± 0.2432
+============================================================
+Unique values in y_train: [0 1]
+Unique values in y_val: [0 1]
+Unique values in y_test: [0 1]
+
+Teacher model:
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input (InputLayer)              │ (None, 40, 40, 1)      │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_58 (Conv2D)              │ (None, 40, 40, 32)     │           288 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_99          │ (None, 40, 40, 32)     │           128 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_99 (ReLU)                 │ (None, 40, 40, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_57 (MaxPooling2D) │ (None, 20, 20, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_114 (Dropout)           │ (None, 20, 20, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_59 (Conv2D)              │ (None, 20, 20, 64)     │        18,432 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_100         │ (None, 20, 20, 64)     │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_100 (ReLU)                │ (None, 20, 20, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_58 (MaxPooling2D) │ (None, 10, 10, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_115 (Dropout)           │ (None, 10, 10, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_60 (Conv2D)              │ (None, 10, 10, 128)    │        73,728 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_101         │ (None, 10, 10, 128)    │           512 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_101 (ReLU)                │ (None, 10, 10, 128)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_59 (MaxPooling2D) │ (None, 5, 5, 128)      │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_116 (Dropout)           │ (None, 5, 5, 128)      │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ flatten_17 (Flatten)            │ (None, 3200)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_76 (Dense)                │ (None, 256)            │       819,200 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_102         │ (None, 256)            │         1,024 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_102 (ReLU)                │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_117 (Dropout)           │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_77 (Dense)                │ (None, 128)            │        32,768 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_103         │ (None, 128)            │           512 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_103 (ReLU)                │ (None, 128)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_118 (Dropout)           │ (None, 128)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_78 (Dense)                │ (None, 64)             │         8,192 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_104         │ (None, 64)             │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_104 (ReLU)                │ (None, 64)             │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_119 (Dropout)           │ (None, 64)             │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_79 (Dense)                │ (None, 2)              │           130 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+
+Student Model:
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input (InputLayer)              │ (None, 1600)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (None, 256)            │       409,856 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_3 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_2 (Dense)                 │ (None, 256)            │        65,792 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_4 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_3 (Dense)                 │ (None, 256)            │        65,792 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_5 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ output (Dense)                  │ (None, 2)              │           514 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+
+
+============================================================
+COMPRESSING COMPLEX MODEL TO SIMPLE DENSE NETWORK
+============================================================
+Teacher: Sparse Conv Model (955,426 params)
+Student: Simple Dense Model (541,954 params)
+Compression Ratio: 1.8x
+============================================================
+Epoch 1/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.6590 - distill_loss: 1.0347 - f1_score: 0.4809 - student_loss: 11.6205 - total_loss: 23.0178
+Epoch 1: val_f1_score improved from None to 0.46409, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 18s 40ms/step - accuracy: 0.7142 - distill_loss: 1.1743 - f1_score: 0.4980 - student_loss: 13.4780 - total_loss: 26.1811 - val_accuracy: 0.8660 - val_distill_loss: 1.3065 - val_f1_score: 0.4641 - val_student_loss: 5.6925 - val_total_loss: 27.2695 - learning_rate: 0.0020
+Epoch 2/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.7241 - distill_loss: 1.2049 - f1_score: 0.5070 - student_loss: 12.9333 - total_loss: 26.6838
+Epoch 2: val_f1_score improved from 0.46409 to 0.46448, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 39ms/step - accuracy: 0.7338 - distill_loss: 1.2393 - f1_score: 0.5139 - student_loss: 14.3848 - total_loss: 27.6632 - val_accuracy: 0.8673 - val_distill_loss: 1.3967 - val_f1_score: 0.4645 - val_student_loss: 21.3500 - val_total_loss: 32.2033 - learning_rate: 0.0020
+Epoch 3/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.7977 - distill_loss: 1.3329 - f1_score: 0.5589 - student_loss: 23.1626 - total_loss: 31.2899
+Epoch 3: val_f1_score did not improve from 0.46448
+349/349 ━━━━━━━━━━━━━━━━━━━━ 12s 35ms/step - accuracy: 0.8150 - distill_loss: 1.3558 - f1_score: 0.6071 - student_loss: 24.4287 - total_loss: 32.0019 - val_accuracy: 0.5008 - val_distill_loss: 1.2311 - val_f1_score: 0.4614 - val_student_loss: 24.4639 - val_total_loss: 29.5157 - learning_rate: 0.0020
+Epoch 4/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.8461 - distill_loss: 1.3666 - f1_score: 0.6535 - student_loss: 20.2716 - total_loss: 31.3855
+Epoch 4: val_f1_score improved from 0.46448 to 0.71933, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 36ms/step - accuracy: 0.8585 - distill_loss: 1.3710 - f1_score: 0.6819 - student_loss: 21.6463 - total_loss: 31.7483 - val_accuracy: 0.8797 - val_distill_loss: 1.3447 - val_f1_score: 0.7193 - val_student_loss: 11.7505 - val_total_loss: 29.2438 - learning_rate: 0.0020
+Epoch 5/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.8710 - distill_loss: 1.3860 - f1_score: 0.7137 - student_loss: 28.7683 - total_loss: 33.4729
+Epoch 5: val_f1_score improved from 0.71933 to 0.73286, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 39ms/step - accuracy: 0.8698 - distill_loss: 1.3997 - f1_score: 0.7143 - student_loss: 37.7156 - total_loss: 35.5372 - val_accuracy: 0.9050 - val_distill_loss: 1.4074 - val_f1_score: 0.7329 - val_student_loss: 41.0191 - val_total_loss: 36.3515 - learning_rate: 0.0020
+Epoch 6/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8812 - distill_loss: 1.4165 - f1_score: 0.7210 - student_loss: 70.2190 - total_loss: 42.3748
+Epoch 6: val_f1_score improved from 0.73286 to 0.78511, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 39ms/step - accuracy: 0.8858 - distill_loss: 1.4178 - f1_score: 0.7458 - student_loss: 72.4319 - total_loss: 42.8421 - val_accuracy: 0.9198 - val_distill_loss: 1.4092 - val_f1_score: 0.7851 - val_student_loss: 44.2557 - val_total_loss: 37.0342 - learning_rate: 0.0020
+Epoch 7/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.8837 - distill_loss: 1.4246 - f1_score: 0.7353 - student_loss: 91.7037 - total_loss: 46.8319
+Epoch 7: val_f1_score improved from 0.78511 to 0.81874, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 12s 35ms/step - accuracy: 0.8739 - distill_loss: 1.4331 - f1_score: 0.7259 - student_loss: 130.3728 - total_loss: 54.7359 - val_accuracy: 0.9236 - val_distill_loss: 1.4261 - val_f1_score: 0.8187 - val_student_loss: 86.7962 - val_total_loss: 45.8814 - learning_rate: 0.0020
+Epoch 8/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.8812 - distill_loss: 1.4432 - f1_score: 0.7426 - student_loss: 256.5051 - total_loss: 80.1658
+Epoch 8: val_f1_score did not improve from 0.81874
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 38ms/step - accuracy: 0.8799 - distill_loss: 1.4450 - f1_score: 0.7426 - student_loss: 381.2612 - total_loss: 105.1525 - val_accuracy: 0.8840 - val_distill_loss: 1.4458 - val_f1_score: 0.7397 - val_student_loss: 556.0039 - val_total_loss: 140.1171 - learning_rate: 0.0020
+Epoch 9/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.8919 - distill_loss: 1.4439 - f1_score: 0.7568 - student_loss: 817.1710 - total_loss: 192.3120
+Epoch 9: val_f1_score did not improve from 0.81874
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 36ms/step - accuracy: 0.8935 - distill_loss: 1.4432 - f1_score: 0.7641 - student_loss: 1005.0699 - total_loss: 229.8775 - val_accuracy: 0.9080 - val_distill_loss: 1.4372 - val_f1_score: 0.7838 - val_student_loss: 804.6442 - val_total_loss: 189.6724 - learning_rate: 0.0020
+Epoch 10/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.8997 - distill_loss: 1.4393 - f1_score: 0.7647 - student_loss: 1107.9362 - total_loss: 250.3735
+Epoch 10: val_f1_score did not improve from 0.81874
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 36ms/step - accuracy: 0.8995 - distill_loss: 1.4397 - f1_score: 0.7752 - student_loss: 1243.5093 - total_loss: 277.4952 - val_accuracy: 0.9050 - val_distill_loss: 1.4382 - val_f1_score: 0.7758 - val_student_loss: 1737.6307 - val_total_loss: 376.2900 - learning_rate: 0.0020
+Epoch 11/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.8927 - distill_loss: 1.4439 - f1_score: 0.7586 - student_loss: 1512.2435 - total_loss: 331.3260
+Epoch 11: val_f1_score improved from 0.81874 to 0.82400, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 36ms/step - accuracy: 0.8925 - distill_loss: 1.4439 - f1_score: 0.7642 - student_loss: 1899.9993 - total_loss: 408.8784 - val_accuracy: 0.9168 - val_distill_loss: 1.4328 - val_f1_score: 0.8240 - val_student_loss: 1093.9906 - val_total_loss: 247.4543 - learning_rate: 0.0020
+Epoch 12/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.9043 - distill_loss: 1.4382 - f1_score: 0.7882 - student_loss: 1883.2218 - total_loss: 405.4075
+Epoch 12: val_f1_score did not improve from 0.82400
+349/349 ━━━━━━━━━━━━━━━━━━━━ 12s 36ms/step - accuracy: 0.9019 - distill_loss: 1.4394 - f1_score: 0.7827 - student_loss: 2040.6135 - total_loss: 436.9103 - val_accuracy: 0.9276 - val_distill_loss: 1.4271 - val_f1_score: 0.8222 - val_student_loss: 1226.7513 - val_total_loss: 273.8927 - learning_rate: 0.0020
+Epoch 13/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.8997 - distill_loss: 1.4398 - f1_score: 0.7731 - student_loss: 2128.6155 - total_loss: 454.5189
+Epoch 13: val_f1_score did not improve from 0.82400
+349/349 ━━━━━━━━━━━━━━━━━━━━ 12s 36ms/step - accuracy: 0.9007 - distill_loss: 1.4399 - f1_score: 0.7790 - student_loss: 2218.3572 - total_loss: 472.4695 - val_accuracy: 0.9115 - val_distill_loss: 1.4357 - val_f1_score: 0.7976 - val_student_loss: 1414.1019 - val_total_loss: 311.5338 - learning_rate: 0.0020
+Epoch 14/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.9038 - distill_loss: 1.4390 - f1_score: 0.7828 - student_loss: 2350.0427 - total_loss: 498.7881
+Epoch 14: val_f1_score improved from 0.82400 to 0.83395, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 36ms/step - accuracy: 0.9044 - distill_loss: 1.4386 - f1_score: 0.7871 - student_loss: 2628.1584 - total_loss: 554.4052 - val_accuracy: 0.9236 - val_distill_loss: 1.4290 - val_f1_score: 0.8340 - val_student_loss: 1259.6252 - val_total_loss: 280.5044 - learning_rate: 0.0020
+Epoch 15/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.9035 - distill_loss: 1.4387 - f1_score: 0.7826 - student_loss: 2703.9753 - total_loss: 569.5690
+Epoch 15: val_f1_score improved from 0.83395 to 0.83866, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 36ms/step - accuracy: 0.9013 - distill_loss: 1.4398 - f1_score: 0.7830 - student_loss: 3112.9309 - total_loss: 651.3820 - val_accuracy: 0.9314 - val_distill_loss: 1.4253 - val_f1_score: 0.8387 - val_student_loss: 1890.0846 - val_total_loss: 406.5234 - learning_rate: 0.0020
+Epoch 16/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.9016 - distill_loss: 1.4402 - f1_score: 0.7757 - student_loss: 3831.0764 - total_loss: 795.0198
+Epoch 16: val_f1_score did not improve from 0.83866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 37ms/step - accuracy: 0.8934 - distill_loss: 1.4439 - f1_score: 0.7643 - student_loss: 5104.7549 - total_loss: 1049.8287 - val_accuracy: 0.8665 - val_distill_loss: 1.4538 - val_f1_score: 0.7218 - val_student_loss: 9307.9619 - val_total_loss: 1890.6700 - learning_rate: 0.0020
+Epoch 17/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.8881 - distill_loss: 1.4460 - f1_score: 0.7513 - student_loss: 7858.5366 - total_loss: 1600.6272
+Epoch 17: val_f1_score did not improve from 0.83866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 37ms/step - accuracy: 0.8845 - distill_loss: 1.4477 - f1_score: 0.7453 - student_loss: 10943.4473 - total_loss: 2217.6416 - val_accuracy: 0.8972 - val_distill_loss: 1.4426 - val_f1_score: 0.7639 - val_student_loss: 17935.3828 - val_total_loss: 3615.9290 - learning_rate: 0.0020
+Epoch 18/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.8745 - distill_loss: 1.4525 - f1_score: 0.7253 - student_loss: 15232.4980 - total_loss: 3075.5488
+Epoch 18: val_f1_score did not improve from 0.83866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 12s 35ms/step - accuracy: 0.8751 - distill_loss: 1.4523 - f1_score: 0.7290 - student_loss: 17268.4551 - total_loss: 3482.7361 - val_accuracy: 0.8733 - val_distill_loss: 1.4536 - val_f1_score: 0.7308 - val_student_loss: 32306.7129 - val_total_loss: 6490.4155 - learning_rate: 0.0020
+Epoch 19/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.8776 - distill_loss: 1.4511 - f1_score: 0.7318 - student_loss: 24995.9609 - total_loss: 5028.2148
+Epoch 19: val_f1_score did not improve from 0.83866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 36ms/step - accuracy: 0.8778 - distill_loss: 1.4510 - f1_score: 0.7336 - student_loss: 28879.7246 - total_loss: 5804.9624 - val_accuracy: 0.8695 - val_distill_loss: 1.4531 - val_f1_score: 0.6989 - val_student_loss: 71136.5234 - val_total_loss: 14256.3633 - learning_rate: 0.0020
+Epoch 20/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.8852 - distill_loss: 1.4473 - f1_score: 0.7358 - student_loss: 51268.4023 - total_loss: 10282.6260
+Epoch 20: val_f1_score did not improve from 0.83866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 12s 35ms/step - accuracy: 0.8817 - distill_loss: 1.4488 - f1_score: 0.7385 - student_loss: 49987.4375 - total_loss: 10026.4570 - val_accuracy: 0.9064 - val_distill_loss: 1.4370 - val_f1_score: 0.7712 - val_student_loss: 25726.3652 - val_total_loss: 5174.0146 - learning_rate: 0.0020
+Epoch 21/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.8912 - distill_loss: 1.4444 - f1_score: 0.7599 - student_loss: 52679.9805 - total_loss: 10564.8818
+Epoch 21: val_f1_score did not improve from 0.83866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 12s 35ms/step - accuracy: 0.8825 - distill_loss: 1.4488 - f1_score: 0.7461 - student_loss: 60793.2383 - total_loss: 12187.6162 - val_accuracy: 0.8598 - val_distill_loss: 1.4605 - val_f1_score: 0.7118 - val_student_loss: 215067.5781 - val_total_loss: 43042.6914 - learning_rate: 0.0020
+Epoch 22/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.8834 - distill_loss: 1.4481 - f1_score: 0.7279 - student_loss: 102146.3672 - total_loss: 20458.2363
+Epoch 22: val_f1_score improved from 0.83866 to 0.84637, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 12s 36ms/step - accuracy: 0.8820 - distill_loss: 1.4491 - f1_score: 0.7359 - student_loss: 93274.1797 - total_loss: 18683.8359 - val_accuracy: 0.9327 - val_distill_loss: 1.4250 - val_f1_score: 0.8464 - val_student_loss: 16343.4072 - val_total_loss: 3297.1816 - learning_rate: 0.0020
+Epoch 23/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.8817 - distill_loss: 1.4489 - f1_score: 0.7446 - student_loss: 82595.6875 - total_loss: 16548.1211
+Epoch 23: val_f1_score improved from 0.84637 to 0.85866, saving model to best_compressed_student.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 37ms/step - accuracy: 0.8810 - distill_loss: 1.4493 - f1_score: 0.7417 - student_loss: 93246.9844 - total_loss: 18678.3984 - val_accuracy: 0.9381 - val_distill_loss: 1.4236 - val_f1_score: 0.8587 - val_student_loss: 22709.4492 - val_total_loss: 4570.3618 - learning_rate: 0.0020
+Epoch 24/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.8829 - distill_loss: 1.4488 - f1_score: 0.7464 - student_loss: 102793.0547 - total_loss: 20587.5879
+Epoch 24: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 37ms/step - accuracy: 0.8833 - distill_loss: 1.4485 - f1_score: 0.7461 - student_loss: 106530.7422 - total_loss: 21335.1328 - val_accuracy: 0.9190 - val_distill_loss: 1.4326 - val_f1_score: 0.8236 - val_student_loss: 49471.8672 - val_total_loss: 9923.0293 - learning_rate: 0.0020
+Epoch 25/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.8856 - distill_loss: 1.4471 - f1_score: 0.7505 - student_loss: 101294.7812 - total_loss: 20287.9004
+Epoch 25: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 37ms/step - accuracy: 0.8804 - distill_loss: 1.4495 - f1_score: 0.7429 - student_loss: 120365.8203 - total_loss: 24102.1602 - val_accuracy: 0.9314 - val_distill_loss: 1.4260 - val_f1_score: 0.8345 - val_student_loss: 37414.5703 - val_total_loss: 7511.4385 - learning_rate: 0.0020
+Epoch 26/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.8969 - distill_loss: 1.4421 - f1_score: 0.7700 - student_loss: 139972.0781 - total_loss: 28023.2363
+Epoch 26: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 36ms/step - accuracy: 0.8865 - distill_loss: 1.4470 - f1_score: 0.7523 - student_loss: 180328.5312 - total_loss: 36094.5859 - val_accuracy: 0.9012 - val_distill_loss: 1.4405 - val_f1_score: 0.7783 - val_student_loss: 137483.5938 - val_total_loss: 27525.5312 - learning_rate: 0.0020
+Epoch 27/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.8802 - distill_loss: 1.4495 - f1_score: 0.7407 - student_loss: 144363.1875 - total_loss: 28901.6387
+Epoch 27: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 13s 36ms/step - accuracy: 0.8783 - distill_loss: 1.4504 - f1_score: 0.7395 - student_loss: 152764.4531 - total_loss: 30581.9141 - val_accuracy: 0.8932 - val_distill_loss: 1.4449 - val_f1_score: 0.7540 - val_student_loss: 265860.3438 - val_total_loss: 53200.9727 - learning_rate: 0.0020
+Epoch 28/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.8918 - distill_loss: 1.4446 - f1_score: 0.7552 - student_loss: 201725.7188 - total_loss: 40374.0156
+Epoch 28: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 15s 43ms/step - accuracy: 0.8887 - distill_loss: 1.4462 - f1_score: 0.7554 - student_loss: 192399.1094 - total_loss: 38508.6914 - val_accuracy: 0.9101 - val_distill_loss: 1.4364 - val_f1_score: 0.7830 - val_student_loss: 131035.8828 - val_total_loss: 26235.9043 - learning_rate: 0.0020
+Epoch 29/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8793 - distill_loss: 1.4501 - f1_score: 0.7361 - student_loss: 237727.2969 - total_loss: 47574.4648
+Epoch 29: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8799 - distill_loss: 1.4501 - f1_score: 0.7388 - student_loss: 270760.9375 - total_loss: 54181.1797 - val_accuracy: 0.9193 - val_distill_loss: 1.4337 - val_f1_score: 0.8047 - val_student_loss: 210351.0156 - val_total_loss: 42098.8906 - learning_rate: 0.0020
+Epoch 30/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8926 - distill_loss: 1.4442 - f1_score: 0.7591 - student_loss: 248369.3125 - total_loss: 49702.7344
+Epoch 30: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8853 - distill_loss: 1.4474 - f1_score: 0.7493 - student_loss: 260112.5312 - total_loss: 52051.4258 - val_accuracy: 0.9279 - val_distill_loss: 1.4277 - val_f1_score: 0.8299 - val_student_loss: 104461.1172 - val_total_loss: 20920.7773 - learning_rate: 0.0020
+Epoch 31/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.8831 - distill_loss: 1.4483 - f1_score: 0.7410 - student_loss: 309675.7812 - total_loss: 61964.1172
+Epoch 31: ReduceLROnPlateau reducing learning rate to 0.0014000000664964318.
+
+Epoch 31: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 15s 42ms/step - accuracy: 0.8783 - distill_loss: 1.4506 - f1_score: 0.7380 - student_loss: 329512.6875 - total_loss: 65931.5938 - val_accuracy: 0.9319 - val_distill_loss: 1.4265 - val_f1_score: 0.8396 - val_student_loss: 103502.2031 - val_total_loss: 20728.9707 - learning_rate: 0.0020
+Epoch 32/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.8886 - distill_loss: 1.4462 - f1_score: 0.7495 - student_loss: 426167.8125 - total_loss: 85262.4375
+Epoch 32: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 15s 42ms/step - accuracy: 0.8855 - distill_loss: 1.4476 - f1_score: 0.7493 - student_loss: 351748.7812 - total_loss: 70378.6719 - val_accuracy: 0.8956 - val_distill_loss: 1.4412 - val_f1_score: 0.7489 - val_student_loss: 195180.5156 - val_total_loss: 39064.9219 - learning_rate: 0.0014
+Epoch 33/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8906 - distill_loss: 1.4450 - f1_score: 0.7530 - student_loss: 228959.9844 - total_loss: 45820.9023
+Epoch 33: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8861 - distill_loss: 1.4471 - f1_score: 0.7498 - student_loss: 220085.3438 - total_loss: 44045.9727 - val_accuracy: 0.9026 - val_distill_loss: 1.4397 - val_f1_score: 0.7876 - val_student_loss: 154688.3750 - val_total_loss: 30966.4746 - learning_rate: 0.0014
+Epoch 34/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8814 - distill_loss: 1.4491 - f1_score: 0.7410 - student_loss: 209142.6406 - total_loss: 41857.5117
+Epoch 34: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8834 - distill_loss: 1.4482 - f1_score: 0.7485 - student_loss: 237198.6719 - total_loss: 47468.6836 - val_accuracy: 0.8967 - val_distill_loss: 1.4427 - val_f1_score: 0.7614 - val_student_loss: 318299.8438 - val_total_loss: 63688.8125 - learning_rate: 0.0014
+Epoch 35/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.8816 - distill_loss: 1.4492 - f1_score: 0.7335 - student_loss: 288162.2812 - total_loss: 57661.4570
+Epoch 35: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 41ms/step - accuracy: 0.8787 - distill_loss: 1.4503 - f1_score: 0.7364 - student_loss: 271371.8750 - total_loss: 54303.4453 - val_accuracy: 0.9190 - val_distill_loss: 1.4312 - val_f1_score: 0.8239 - val_student_loss: 56115.1172 - val_total_loss: 11251.6455 - learning_rate: 0.0014
+Epoch 36/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.8836 - distill_loss: 1.4484 - f1_score: 0.7395 - student_loss: 260688.5156 - total_loss: 52166.6602
+Epoch 36: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8802 - distill_loss: 1.4499 - f1_score: 0.7418 - student_loss: 260836.4688 - total_loss: 52196.2617 - val_accuracy: 0.9082 - val_distill_loss: 1.4370 - val_f1_score: 0.8001 - val_student_loss: 87316.5781 - val_total_loss: 17492.0488 - learning_rate: 0.0014
+Epoch 37/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8897 - distill_loss: 1.4454 - f1_score: 0.7505 - student_loss: 282203.2812 - total_loss: 56469.5977
+Epoch 37: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8808 - distill_loss: 1.4497 - f1_score: 0.7402 - student_loss: 305939.8125 - total_loss: 61217.0156 - val_accuracy: 0.8913 - val_distill_loss: 1.4462 - val_f1_score: 0.7553 - val_student_loss: 442157.2188 - val_total_loss: 88460.3828 - learning_rate: 0.0014
+Epoch 38/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8862 - distill_loss: 1.4469 - f1_score: 0.7468 - student_loss: 288560.6562 - total_loss: 57741.0586
+Epoch 38: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8816 - distill_loss: 1.4491 - f1_score: 0.7432 - student_loss: 309575.0000 - total_loss: 61943.9531 - val_accuracy: 0.9080 - val_distill_loss: 1.4377 - val_f1_score: 0.7787 - val_student_loss: 237544.3125 - val_total_loss: 47537.6445 - learning_rate: 0.0014
+Epoch 39/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.8922 - distill_loss: 1.4443 - f1_score: 0.7554 - student_loss: 292275.1250 - total_loss: 58483.9141
+Epoch 39: ReduceLROnPlateau reducing learning rate to 0.0009800000465475021.
+
+Epoch 39: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 41ms/step - accuracy: 0.8846 - distill_loss: 1.4479 - f1_score: 0.7484 - student_loss: 316388.3750 - total_loss: 63306.6406 - val_accuracy: 0.9206 - val_distill_loss: 1.4315 - val_f1_score: 0.8165 - val_student_loss: 93680.8906 - val_total_loss: 18764.8086 - learning_rate: 0.0014
+Epoch 40/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8876 - distill_loss: 1.4466 - f1_score: 0.7546 - student_loss: 320005.6875 - total_loss: 64030.0742
+Epoch 40: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8830 - distill_loss: 1.4487 - f1_score: 0.7463 - student_loss: 288827.0000 - total_loss: 57794.4023 - val_accuracy: 0.8762 - val_distill_loss: 1.4527 - val_f1_score: 0.7306 - val_student_loss: 269123.9062 - val_total_loss: 53853.8555 - learning_rate: 9.8000e-04
+Epoch 41/50
+349/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8824 - distill_loss: 1.4488 - f1_score: 0.7371 - student_loss: 288222.6250 - total_loss: 57673.4961
+Epoch 41: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8821 - distill_loss: 1.4489 - f1_score: 0.7433 - student_loss: 264787.0625 - total_loss: 52986.3594 - val_accuracy: 0.9029 - val_distill_loss: 1.4416 - val_f1_score: 0.7742 - val_student_loss: 170753.8281 - val_total_loss: 34179.6094 - learning_rate: 9.8000e-04
+Epoch 42/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8879 - distill_loss: 1.4464 - f1_score: 0.7530 - student_loss: 232101.2812 - total_loss: 46449.1797
+Epoch 42: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8817 - distill_loss: 1.4493 - f1_score: 0.7446 - student_loss: 240304.3906 - total_loss: 48089.8047 - val_accuracy: 0.6881 - val_distill_loss: 1.5380 - val_f1_score: 0.5526 - val_student_loss: 512216.0312 - val_total_loss: 102473.9219 - learning_rate: 9.8000e-04
+Epoch 43/50
+348/349 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.8730 - distill_loss: 1.4530 - f1_score: 0.7238 - student_loss: 306688.2188 - total_loss: 61366.6953
+Epoch 43: val_f1_score did not improve from 0.85866
+349/349 ━━━━━━━━━━━━━━━━━━━━ 14s 40ms/step - accuracy: 0.8763 - distill_loss: 1.4517 - f1_score: 0.7310 - student_loss: 295521.4688 - total_loss: 59133.3008 - val_accuracy: 0.9064 - val_distill_loss: 1.4384 - val_f1_score: 0.7757 - val_student_loss: 230487.3125 - val_total_loss: 46126.2383 - learning_rate: 9.8000e-04
+Epoch 43: early stopping
+Restoring model weights from the end of the best epoch: 23.
+117/117 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step
+
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+============================================================
+TRAINING SUMMARY (F1-Score Focus)
+============================================================
+Total epochs trained: 43
+Final training F1-score: 0.7310
+Final validation F1-score: 0.7757
+Best validation F1-score: 0.8587
+Final training accuracy: 0.8763
+Final validation accuracy: 0.9064
+Final training loss: 59133.3008
+Final validation loss: 46126.2383
+
+Test Set Performance:
+              precision    recall  f1-score   support
+
+      others       0.96      0.97      0.97      3253
+      sheila       0.77      0.74      0.75       463
+
+    accuracy                           0.94      3716
+   macro avg       0.87      0.85      0.86      3716
+weighted avg       0.94      0.94      0.94      3716
+
+
+Overall Weighted F1-Score on Test Set: 0.9389
+
+Compressed model saved as compressed_dense_student.h5
+
+============================================================
+COMPRESSION RESULTS
+============================================================
+Final Test Results:
+  Total Loss: 4092.5657
+  Distillation Loss: 1.4213
+  Student Loss: 20320.6973
+  Student Accuracy: 0.9395
+
+Performance Comparison (1000 test samples):
+  Teacher (Complex) Accuracy: 0.9935
+  Student (Simple) Accuracy: 0.9395
+  Performance Retention: 94.6%
+
+Architecture Comparison:
+  Teacher: Sparse Conv + SoftMax Pooling + Dense (2D input)
+  Student: Simple 3-Layer Dense Network (flattened input)
+  Parameter Reduction: 43.3%
+
+Model Size:
+  Compressed Student (.h5): 2.09 MB
+
+============================================================
+MODEL COMPRESSION COMPLETED SUCCESSFULLY!
+Complex sparse convolution model compressed to simple 3-layer dense network
+============================================================

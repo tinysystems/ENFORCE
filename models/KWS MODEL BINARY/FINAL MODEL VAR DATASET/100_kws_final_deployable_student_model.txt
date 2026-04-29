@@ -1,0 +1,577 @@
+Train: (13004, 40, 40), Val: (2787, 40, 40), Test: (2787, 40, 40)
+Number of classes: 2
+
+==================================================
+FIXING DATASET SHAPE FOR MODEL COMPATIBILITY
+==================================================
+Before reshaping:
+  X_train: (13004, 40, 40)
+  X_val: (2787, 40, 40)
+  X_test: (2787, 40, 40)
+
+After reshaping:
+  X_train: (13004, 40, 40, 1)
+  X_val: (2787, 40, 40, 1)
+  X_test: (2787, 40, 40, 1)
+WARNING:absl:Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+
+Model: "teacher_kws_cnn"
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input (InputLayer)              │ (None, 40, 40, 1)      │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_58 (Conv2D)              │ (None, 40, 40, 32)     │           288 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_99          │ (None, 40, 40, 32)     │           128 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_99 (ReLU)                 │ (None, 40, 40, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_57 (MaxPooling2D) │ (None, 20, 20, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_114 (Dropout)           │ (None, 20, 20, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_59 (Conv2D)              │ (None, 20, 20, 64)     │        18,432 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_100         │ (None, 20, 20, 64)     │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_100 (ReLU)                │ (None, 20, 20, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_58 (MaxPooling2D) │ (None, 10, 10, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_115 (Dropout)           │ (None, 10, 10, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_60 (Conv2D)              │ (None, 10, 10, 128)    │        73,728 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_101         │ (None, 10, 10, 128)    │           512 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_101 (ReLU)                │ (None, 10, 10, 128)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_59 (MaxPooling2D) │ (None, 5, 5, 128)      │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_116 (Dropout)           │ (None, 5, 5, 128)      │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ flatten_17 (Flatten)            │ (None, 3200)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_76 (Dense)                │ (None, 256)            │       819,200 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_102         │ (None, 256)            │         1,024 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_102 (ReLU)                │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_117 (Dropout)           │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_77 (Dense)                │ (None, 128)            │        32,768 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_103         │ (None, 128)            │           512 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_103 (ReLU)                │ (None, 128)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_118 (Dropout)           │ (None, 128)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_78 (Dense)                │ (None, 64)             │         8,192 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_104         │ (None, 64)             │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_104 (ReLU)                │ (None, 64)             │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_119 (Dropout)           │ (None, 64)             │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_79 (Dense)                │ (None, 2)              │           130 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+
+Class distribution: {0: 11371, 1: 1633}
+Imbalance ratio: 6.96:1
+Class weights: {0: 0.571805470055404, 1: 3.98162890385793}
+
+Using layer -2: 'dropout_119' (Dropout)
+Extracting from layer -2:  99%|█████████▉| 403/407 [00:07<00:00, 64.32it/s]2025-08-31 18:52:17.440984: W tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+Extracting from layer -2: 100%|██████████| 407/407 [00:07<00:00, 55.56it/s]
+Using layer -2: 'dropout_119' (Dropout)
+Extracting from layer -2:  93%|█████████▎| 82/88 [00:01<00:00, 66.23it/s]2025-08-31 18:52:18.942012: W tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+Extracting from layer -2: 100%|██████████| 88/88 [00:01<00:00, 59.51it/s]
+Using layer -2: 'dropout_119' (Dropout)
+Extracting from layer -2:  93%|█████████▎| 82/88 [00:01<00:00, 65.91it/s]2025-08-31 18:52:20.323650: W tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+Extracting from layer -2: 100%|██████████| 88/88 [00:01<00:00, 64.03it/s]
+Train features: (13004, 64)
+Validation features: (2787, 64)
+Test Features: (2787, 64)
+
+=== PHASE 2: Dense Field Creation with Class Balancing ===
+Original features range: 0.00 to 4.75
+Normalized features range: -1.47 to 4.91
+Class weights for imbalance: {0: 0.571805470055404, 1: 3.98162890385793}
+
+┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)        ┃ Output Shape      ┃    Param # ┃ Connected to      ┃
+┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━┩
+│ input_layer_1       │ (None, 64)        │          0 │ -                 │
+│ (InputLayer)        │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense_4 (Dense)     │ (None, 512)       │     33,280 │ input_layer_1[0]… │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dropout_4 (Dropout) │ (None, 512)       │          0 │ dense_4[0][0]     │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense_5 (Dense)     │ (None, 256)       │    131,328 │ dropout_4[0][0]   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dropout_5 (Dropout) │ (None, 256)       │          0 │ dense_5[0][0]     │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ latent (Dense)      │ (None, 64)        │     16,448 │ dropout_5[0][0]   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense_6 (Dense)     │ (None, 256)       │     16,640 │ latent[0][0]      │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dropout_6 (Dropout) │ (None, 256)       │          0 │ dense_6[0][0]     │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense_7 (Dense)     │ (None, 512)       │    131,584 │ dropout_6[0][0]   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dropout_7 (Dropout) │ (None, 512)       │          0 │ dense_7[0][0]     │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ reconstruction      │ (None, 64)        │     32,832 │ dropout_7[0][0]   │
+│ (Dense)             │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ label_pred (Dense)  │ (None, 2)         │        130 │ latent[0][0]      │
+└─────────────────────┴───────────────────┴────────────┴───────────────────┘
+
+Training autoencoder with class balancing...
+Epoch 1/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - label_pred_accuracy: 0.9302 - label_pred_loss: 1.7908 - loss: 1202.8479 - reconstruction_loss: 1202.6721
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 19s 40ms/step - label_pred_accuracy: 0.9304 - label_pred_loss: 2.6766 - loss: 3644.0366 - reconstruction_loss: 3645.1213 - val_label_pred_accuracy: 0.9932 - val_label_pred_loss: 0.5509 - val_loss: 716.4888 - val_reconstruction_loss: 712.2527 - learning_rate: 0.0010
+Epoch 2/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - label_pred_accuracy: 0.9863 - label_pred_loss: 0.5356 - loss: 3201.3164 - reconstruction_loss: 3201.2573
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 16s 39ms/step - label_pred_accuracy: 0.9895 - label_pred_loss: 0.4082 - loss: 2165.3987 - reconstruction_loss: 2163.0283 - val_label_pred_accuracy: 0.9932 - val_label_pred_loss: 0.5569 - val_loss: 125.7066 - val_reconstruction_loss: 124.9497 - learning_rate: 0.0010
+Epoch 3/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - label_pred_accuracy: 0.9902 - label_pred_loss: 0.3589 - loss: 454.2859 - reconstruction_loss: 454.2490
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 16s 39ms/step - label_pred_accuracy: 0.9905 - label_pred_loss: 0.4113 - loss: 287.1679 - reconstruction_loss: 286.7724 - val_label_pred_accuracy: 0.9932 - val_label_pred_loss: 0.5307 - val_loss: 30.5392 - val_reconstruction_loss: 30.3245 - learning_rate: 0.0010
+Epoch 4/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - label_pred_accuracy: 0.9913 - label_pred_loss: 0.3060 - loss: 44.4907 - reconstruction_loss: 44.4600
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 16s 39ms/step - label_pred_accuracy: 0.9914 - label_pred_loss: 0.3187 - loss: 26.1314 - reconstruction_loss: 26.0658 - val_label_pred_accuracy: 0.9932 - val_label_pred_loss: 0.4852 - val_loss: 2.6030 - val_reconstruction_loss: 2.5420 - learning_rate: 0.0010
+Epoch 5/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - label_pred_accuracy: 0.9893 - label_pred_loss: 0.2232 - loss: 3.2782 - reconstruction_loss: 3.2558
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 37ms/step - label_pred_accuracy: 0.9898 - label_pred_loss: 0.3240 - loss: 2.1730 - reconstruction_loss: 2.1387 - val_label_pred_accuracy: 0.9932 - val_label_pred_loss: 0.5546 - val_loss: 0.9745 - val_reconstruction_loss: 0.9175 - learning_rate: 0.0010
+Epoch 6/25
+406/407 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - label_pred_accuracy: 0.9900 - label_pred_loss: 0.3184 - loss: 0.8629 - reconstruction_loss: 0.8311
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 37ms/step - label_pred_accuracy: 0.9904 - label_pred_loss: 0.3420 - loss: 0.8023 - reconstruction_loss: 0.7678 - val_label_pred_accuracy: 0.9925 - val_label_pred_loss: 0.5070 - val_loss: 0.6639 - val_reconstruction_loss: 0.6117 - learning_rate: 0.0010
+Epoch 7/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 38ms/step - label_pred_accuracy: 0.9910 - label_pred_loss: 0.3608 - loss: 1.0110 - reconstruction_loss: 0.9747 - val_label_pred_accuracy: 0.9910 - val_label_pred_loss: 0.4984 - val_loss: 1.0965 - val_reconstruction_loss: 1.0411 - learning_rate: 0.0010
+Epoch 8/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 37ms/step - label_pred_accuracy: 0.9914 - label_pred_loss: 0.2870 - loss: 1.7554 - reconstruction_loss: 1.7276 - val_label_pred_accuracy: 0.9917 - val_label_pred_loss: 0.4482 - val_loss: 1.8626 - val_reconstruction_loss: 1.8108 - learning_rate: 0.0010
+Epoch 9/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 16s 39ms/step - label_pred_accuracy: 0.9889 - label_pred_loss: 0.3642 - loss: 10.1174 - reconstruction_loss: 10.1053 - val_label_pred_accuracy: 0.9928 - val_label_pred_loss: 0.5014 - val_loss: 9.9931 - val_reconstruction_loss: 9.9027 - learning_rate: 0.0010
+Epoch 10/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 16s 39ms/step - label_pred_accuracy: 0.9918 - label_pred_loss: 0.2395 - loss: 25.3748 - reconstruction_loss: 25.3422 - val_label_pred_accuracy: 0.9907 - val_label_pred_loss: 0.3651 - val_loss: 13.2064 - val_reconstruction_loss: 13.1091 - learning_rate: 0.0010
+Epoch 11/25
+406/407 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - label_pred_accuracy: 0.9892 - label_pred_loss: 0.2042 - loss: 23.8756 - reconstruction_loss: 23.8552
+Epoch 11: ReduceLROnPlateau reducing learning rate to 0.0005000000237487257.
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 38ms/step - label_pred_accuracy: 0.9902 - label_pred_loss: 0.2244 - loss: 29.5297 - reconstruction_loss: 29.4769 - val_label_pred_accuracy: 0.9885 - val_label_pred_loss: 0.3164 - val_loss: 7.8396 - val_reconstruction_loss: 7.7777 - learning_rate: 0.0010
+Epoch 12/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - label_pred_accuracy: 0.9919 - label_pred_loss: 0.1645 - loss: 2.3500 - reconstruction_loss: 2.3305 - val_label_pred_accuracy: 0.9928 - val_label_pred_loss: 0.2587 - val_loss: 2.0734 - val_reconstruction_loss: 2.0441 - learning_rate: 5.0000e-04
+Epoch 13/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 38ms/step - label_pred_accuracy: 0.9917 - label_pred_loss: 0.1424 - loss: 1.3988 - reconstruction_loss: 1.3851 - val_label_pred_accuracy: 0.9882 - val_label_pred_loss: 0.1593 - val_loss: 1.0481 - val_reconstruction_loss: 1.0323 - learning_rate: 5.0000e-04
+Epoch 14/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - label_pred_accuracy: 0.9907 - label_pred_loss: 0.0788 - loss: 1.0311 - reconstruction_loss: 1.0232
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 16s 38ms/step - label_pred_accuracy: 0.9916 - label_pred_loss: 0.1269 - loss: 0.7319 - reconstruction_loss: 0.7186 - val_label_pred_accuracy: 0.9932 - val_label_pred_loss: 0.1947 - val_loss: 0.3216 - val_reconstruction_loss: 0.3016 - learning_rate: 5.0000e-04
+Epoch 15/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 37ms/step - label_pred_accuracy: 0.9924 - label_pred_loss: 0.1185 - loss: 1.5941 - reconstruction_loss: 1.5827 - val_label_pred_accuracy: 0.9878 - val_label_pred_loss: 0.1728 - val_loss: 1.6248 - val_reconstruction_loss: 1.6000 - learning_rate: 5.0000e-04
+Epoch 16/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 38ms/step - label_pred_accuracy: 0.9912 - label_pred_loss: 0.1192 - loss: 1.6862 - reconstruction_loss: 1.6752 - val_label_pred_accuracy: 0.9928 - val_label_pred_loss: 0.1751 - val_loss: 7.8237 - val_reconstruction_loss: 7.7726 - learning_rate: 5.0000e-04
+Epoch 17/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 37ms/step - label_pred_accuracy: 0.9820 - label_pred_loss: 0.3256 - loss: 148.5663 - reconstruction_loss: 148.3178 - val_label_pred_accuracy: 0.9932 - val_label_pred_loss: 0.1768 - val_loss: 5.7284 - val_reconstruction_loss: 5.6849 - learning_rate: 5.0000e-04
+Epoch 18/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 16s 38ms/step - label_pred_accuracy: 0.9929 - label_pred_loss: 0.0985 - loss: 5.4245 - reconstruction_loss: 5.4083 - val_label_pred_accuracy: 0.9917 - val_label_pred_loss: 0.1474 - val_loss: 0.6173 - val_reconstruction_loss: 0.6004 - learning_rate: 5.0000e-04
+Epoch 19/25
+406/407 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - label_pred_accuracy: 0.9918 - label_pred_loss: 0.0748 - loss: 1.3616 - reconstruction_loss: 1.3541
+Epoch 19: ReduceLROnPlateau reducing learning rate to 0.0002500000118743628.
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - label_pred_accuracy: 0.9927 - label_pred_loss: 0.0980 - loss: 1.0798 - reconstruction_loss: 1.0693 - val_label_pred_accuracy: 0.9939 - val_label_pred_loss: 0.1498 - val_loss: 0.5327 - val_reconstruction_loss: 0.5155 - learning_rate: 5.0000e-04
+Epoch 20/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - label_pred_accuracy: 0.9932 - label_pred_loss: 0.0833 - loss: 0.4558 - reconstruction_loss: 0.4474 - val_label_pred_accuracy: 0.9935 - val_label_pred_loss: 0.1366 - val_loss: 0.3378 - val_reconstruction_loss: 0.3228 - learning_rate: 2.5000e-04
+Epoch 21/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - label_pred_accuracy: 0.9925 - label_pred_loss: 0.0885 - loss: 0.8951 - reconstruction_loss: 0.8888 - val_label_pred_accuracy: 0.9907 - val_label_pred_loss: 0.1256 - val_loss: 1.6737 - val_reconstruction_loss: 1.6527 - learning_rate: 2.5000e-04
+Epoch 22/25
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - label_pred_accuracy: 0.9927 - label_pred_loss: 0.0860 - loss: 1.4872 - reconstruction_loss: 1.4784 - val_label_pred_accuracy: 0.9928 - val_label_pred_loss: 0.1269 - val_loss: 2.5891 - val_reconstruction_loss: 2.5624 - learning_rate: 2.5000e-04
+Creating dense embeddings...
+407/407 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step
+88/88 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step
+88/88 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step
+
+=== EMBEDDING STATISTICS ===
+Train embeddings shape: (13004, 64)
+Embeddings range: -4.142 to 4.074
+Embeddings mean: -0.000, std: 1.000
+Validation embeddings shape: (2787, 64)
+Test embeddings shape: (2787, 64)
+Phase 2 completed successfully! ✅
+
+=== PHASE 3: Inverter Network Training ===
+Loaded embeddings - Train: (13004, 64), Val: (2787, 64)
+Flattened images - Train: (13004, 1600), Val: (2787, 1600)
+Input range: 0.000 to 0.004
+Sample weights range: 0.572 to 3.982
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)        │ (None, 1600)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (None, 256)            │       409,600 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ bn_1 (BatchNormalization)       │ (None, 256)            │         1,024 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation_1 (Activation)       │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_2 (Dense)                 │ (None, 256)            │        65,536 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ bn_2 (BatchNormalization)       │ (None, 256)            │         1,024 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation_2 (Activation)       │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_2 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_3 (Dense)                 │ (None, 256)            │        65,536 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ bn_3 (BatchNormalization)       │ (None, 256)            │         1,024 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation_3 (Activation)       │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_3 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ predicted_embeddings (Dense)    │ (None, 64)             │        16,448 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+
+Training inverter to predict teacher embeddings from flattened images...
+Epoch 1/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - loss: 1.3379 - mae: 0.8774
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 21s 42ms/step - loss: 0.9532 - mae: 0.7675 - val_loss: 0.9454 - val_mae: 0.8319 - learning_rate: 1.0000e-04
+Epoch 2/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 67ms/step - loss: 0.5373 - mae: 0.6154
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 28s 69ms/step - loss: 0.5036 - mae: 0.5944 - val_loss: 0.3000 - val_mae: 0.4245 - learning_rate: 1.0000e-04
+Epoch 3/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.4127 - mae: 0.5433
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 37ms/step - loss: 0.3961 - mae: 0.5312 - val_loss: 0.2419 - val_mae: 0.3684 - learning_rate: 1.0000e-04
+Epoch 4/100
+406/407 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - loss: 0.3436 - mae: 0.4981
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 16s 38ms/step - loss: 0.3327 - mae: 0.4904 - val_loss: 0.2312 - val_mae: 0.3622 - learning_rate: 1.0000e-04
+Epoch 5/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 18s 44ms/step - loss: 0.2895 - mae: 0.4587 - val_loss: 0.2325 - val_mae: 0.3665 - learning_rate: 1.0000e-04
+Epoch 6/100
+406/407 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.2656 - mae: 0.4399
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - loss: 0.2605 - mae: 0.4365 - val_loss: 0.1755 - val_mae: 0.3059 - learning_rate: 1.0000e-04
+Epoch 7/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.2376 - mae: 0.4165 - val_loss: 0.1920 - val_mae: 0.3334 - learning_rate: 1.0000e-04
+Epoch 8/100
+406/407 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - loss: 0.2150 - mae: 0.3998
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 16s 40ms/step - loss: 0.2132 - mae: 0.3969 - val_loss: 0.1557 - val_mae: 0.2814 - learning_rate: 1.0000e-04
+Epoch 9/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - loss: 0.1961 - mae: 0.3811 - val_loss: 0.1796 - val_mae: 0.3180 - learning_rate: 1.0000e-04
+Epoch 10/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 49ms/step - loss: 0.1822 - mae: 0.3693
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 21s 51ms/step - loss: 0.1864 - mae: 0.3702 - val_loss: 0.1406 - val_mae: 0.2693 - learning_rate: 1.0000e-04
+Epoch 11/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 17s 41ms/step - loss: 0.1716 - mae: 0.3568 - val_loss: 0.1797 - val_mae: 0.3194 - learning_rate: 1.0000e-04
+Epoch 12/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.1598 - mae: 0.3454
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.1612 - mae: 0.3458 - val_loss: 0.1310 - val_mae: 0.2651 - learning_rate: 1.0000e-04
+Epoch 13/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - loss: 0.1514 - mae: 0.3342 - val_loss: 0.1894 - val_mae: 0.3283 - learning_rate: 1.0000e-04
+Epoch 14/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 34ms/step - loss: 0.1420 - mae: 0.3253 - val_loss: 0.1415 - val_mae: 0.2715 - learning_rate: 1.0000e-04
+Epoch 15/100
+406/407 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.1363 - mae: 0.3182
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - loss: 0.1385 - mae: 0.3190 - val_loss: 0.1251 - val_mae: 0.2575 - learning_rate: 1.0000e-04
+Epoch 16/100
+406/407 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - loss: 0.1303 - mae: 0.3105
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.1316 - mae: 0.3112 - val_loss: 0.1251 - val_mae: 0.2458 - learning_rate: 1.0000e-04
+Epoch 17/100
+406/407 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.1239 - mae: 0.3023
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.1250 - mae: 0.3037 - val_loss: 0.1111 - val_mae: 0.2309 - learning_rate: 1.0000e-04
+Epoch 18/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 37ms/step - loss: 0.1232 - mae: 0.2991 - val_loss: 0.1395 - val_mae: 0.2656 - learning_rate: 1.0000e-04
+Epoch 19/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 36ms/step - loss: 0.1148 - mae: 0.2906 - val_loss: 0.1111 - val_mae: 0.2338 - learning_rate: 1.0000e-04
+Epoch 20/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.1122 - mae: 0.2874 - val_loss: 0.1821 - val_mae: 0.3089 - learning_rate: 1.0000e-04
+Epoch 21/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - loss: 0.1089 - mae: 0.2833
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 16s 39ms/step - loss: 0.1095 - mae: 0.2839 - val_loss: 0.1101 - val_mae: 0.2288 - learning_rate: 1.0000e-04
+Epoch 22/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - loss: 0.1021 - mae: 0.2766 - val_loss: 0.1194 - val_mae: 0.2440 - learning_rate: 1.0000e-04
+Epoch 23/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.1011 - mae: 0.2733 - val_loss: 0.1193 - val_mae: 0.2423 - learning_rate: 1.0000e-04
+Epoch 24/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0995 - mae: 0.2707 - val_loss: 0.1268 - val_mae: 0.2461 - learning_rate: 1.0000e-04
+Epoch 25/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0930 - mae: 0.2629 - val_loss: 0.1106 - val_mae: 0.2295 - learning_rate: 1.0000e-04
+Epoch 26/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0915 - mae: 0.2601 - val_loss: 0.1121 - val_mae: 0.2327 - learning_rate: 1.0000e-04
+Epoch 27/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 43ms/step - loss: 0.0855 - mae: 0.2547
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 18s 45ms/step - loss: 0.0887 - mae: 0.2581 - val_loss: 0.1062 - val_mae: 0.2215 - learning_rate: 1.0000e-04
+Epoch 28/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 35ms/step - loss: 0.0880 - mae: 0.2551 - val_loss: 0.1150 - val_mae: 0.2356 - learning_rate: 1.0000e-04
+Epoch 29/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - loss: 0.0829 - mae: 0.2482
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - loss: 0.0853 - mae: 0.2515 - val_loss: 0.0997 - val_mae: 0.2168 - learning_rate: 1.0000e-04
+Epoch 30/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 34ms/step - loss: 0.0830 - mae: 0.2477 - val_loss: 0.1346 - val_mae: 0.2544 - learning_rate: 1.0000e-04
+Epoch 31/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0819 - mae: 0.2458 - val_loss: 0.1371 - val_mae: 0.2578 - learning_rate: 1.0000e-04
+Epoch 32/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0789 - mae: 0.2423 - val_loss: 0.1176 - val_mae: 0.2340 - learning_rate: 1.0000e-04
+Epoch 33/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 36ms/step - loss: 0.0779 - mae: 0.2403 - val_loss: 0.1101 - val_mae: 0.2280 - learning_rate: 1.0000e-04
+Epoch 34/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.0736 - mae: 0.2347
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0750 - mae: 0.2362 - val_loss: 0.0939 - val_mae: 0.2060 - learning_rate: 1.0000e-04
+Epoch 35/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0760 - mae: 0.2353 - val_loss: 0.0966 - val_mae: 0.2103 - learning_rate: 1.0000e-04
+Epoch 36/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0742 - mae: 0.2320 - val_loss: 0.0954 - val_mae: 0.2135 - learning_rate: 1.0000e-04
+Epoch 37/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0703 - mae: 0.2291 - val_loss: 0.1145 - val_mae: 0.2342 - learning_rate: 1.0000e-04
+Epoch 38/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0701 - mae: 0.2271 - val_loss: 0.1166 - val_mae: 0.2315 - learning_rate: 1.0000e-04
+Epoch 39/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0691 - mae: 0.2252 - val_loss: 0.1268 - val_mae: 0.2438 - learning_rate: 1.0000e-04
+Epoch 40/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 15s 37ms/step - loss: 0.0675 - mae: 0.2234 - val_loss: 0.0940 - val_mae: 0.2083 - learning_rate: 1.0000e-04
+Epoch 41/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 35ms/step - loss: 0.0665 - mae: 0.2224 - val_loss: 0.1157 - val_mae: 0.2267 - learning_rate: 1.0000e-04
+Epoch 42/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 0.0637 - mae: 0.2169
+Epoch 42: ReduceLROnPlateau reducing learning rate to 4.999999873689376e-05.
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 34ms/step - loss: 0.0658 - mae: 0.2202 - val_loss: 0.1217 - val_mae: 0.2381 - learning_rate: 1.0000e-04
+Epoch 43/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 14s 34ms/step - loss: 0.0618 - mae: 0.2152 - val_loss: 0.0963 - val_mae: 0.2130 - learning_rate: 5.0000e-05
+Epoch 44/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 19s 47ms/step - loss: 0.0608 - mae: 0.2139 - val_loss: 0.1083 - val_mae: 0.2223 - learning_rate: 5.0000e-05
+Synthesizing embedding targets for student training...
+51/51 ━━━━━━━━━━━━━━━━━━━━ 1s 9ms/step
+11/11 ━━━━━━━━━━━━━━━━━━━━ 0s 21ms/step
+11/11 ━━━━━━━━━━━━━━━━━━━━ 0s 4ms/step 
+Synthesized embeddings - Train: (13004, 64), Val: (2787, 64)
+Inverter performance - Average cosine similarity: 0.9115
+Inverter performance - MAE: 0.2060
+Phase 3 completed successfully! ✅
+Multi-task dataset ready for student training in Phase 4
+
+=== PHASE 4: Multi-Task Student Training ===
+Data converted to TensorFlow tensors
+
+┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)        ┃ Output Shape      ┃    Param # ┃ Connected to      ┃
+┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━┩
+│ input_layer         │ (None, 1600)      │          0 │ -                 │
+│ (InputLayer)        │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense_1 (Dense)     │ (None, 256)       │    409,600 │ input_layer[0][0] │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ bn_1                │ (None, 256)       │      1,024 │ dense_1[0][0]     │
+│ (BatchNormalizatio… │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ activation_1        │ (None, 256)       │          0 │ bn_1[2][0]        │
+│ (Activation)        │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dropout_1 (Dropout) │ (None, 256)       │          0 │ activation_1[2][… │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense_2 (Dense)     │ (None, 256)       │     65,536 │ dropout_1[2][0]   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ bn_2                │ (None, 256)       │      1,024 │ dense_2[2][0]     │
+│ (BatchNormalizatio… │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ activation_2        │ (None, 256)       │          0 │ bn_2[2][0]        │
+│ (Activation)        │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dropout_2 (Dropout) │ (None, 256)       │          0 │ activation_2[2][… │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense_3 (Dense)     │ (None, 256)       │     65,536 │ dropout_2[2][0]   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ bn_3                │ (None, 256)       │      1,024 │ dense_3[2][0]     │
+│ (BatchNormalizatio… │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ activation_3        │ (None, 256)       │          0 │ bn_3[2][0]        │
+│ (Activation)        │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dropout_3 (Dropout) │ (None, 256)       │          0 │ activation_3[2][… │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ class_output        │ (None, 2)         │        514 │ dropout_3[2][0]   │
+│ (Dense)             │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ embedding_output    │ (None, 64)        │     16,448 │ dropout_3[2][0]   │
+│ (Dense)             │                   │            │                   │
+└─────────────────────┴───────────────────┴────────────┴───────────────────┘
+
+Starting multi-task training...
+Epoch 1/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 60ms/step - class_output_accuracy: 0.9281 - class_output_f1_score: 0.9369 - class_output_loss: 0.2537 - embedding_output_embedding_cosine_accuracy: 0.3788 - embedding_output_loss: 0.8204 - embedding_output_mse: 0.8204 - loss: 0.3357
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 33s 68ms/step - class_output_accuracy: 0.9786 - class_output_f1_score: 0.9792 - class_output_loss: 0.1194 - embedding_output_embedding_cosine_accuracy: 0.5944 - embedding_output_loss: 0.5308 - embedding_output_mse: 0.5312 - loss: 0.1727 - val_class_output_accuracy: 0.9803 - val_class_output_f1_score: 0.9803 - val_class_output_loss: 0.0678 - val_embedding_output_embedding_cosine_accuracy: 0.8949 - val_embedding_output_loss: 0.0868 - val_embedding_output_mse: 0.0870 - val_loss: 0.0770 - learning_rate: 1.0000e-04
+Epoch 2/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 59ms/step - class_output_accuracy: 0.9972 - class_output_f1_score: 0.9972 - class_output_loss: 0.0231 - embedding_output_embedding_cosine_accuracy: 0.8148 - embedding_output_loss: 0.2245 - embedding_output_mse: 0.2245 - loss: 0.0456
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+407/407 ━━━━━━━━━━━━━━━━━━━━ 26s 64ms/step - class_output_accuracy: 0.9985 - class_output_f1_score: 0.9985 - class_output_loss: 0.0176 - embedding_output_embedding_cosine_accuracy: 0.8244 - embedding_output_loss: 0.2165 - embedding_output_mse: 0.2166 - loss: 0.0392 - val_class_output_accuracy: 0.9864 - val_class_output_f1_score: 0.9863 - val_class_output_loss: 0.0541 - val_embedding_output_embedding_cosine_accuracy: 0.9458 - val_embedding_output_loss: 0.0406 - val_embedding_output_mse: 0.0406 - val_loss: 0.0587 - learning_rate: 1.0000e-04
+Epoch 3/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 26s 63ms/step - class_output_accuracy: 0.9984 - class_output_f1_score: 0.9984 - class_output_loss: 0.0102 - embedding_output_embedding_cosine_accuracy: 0.8448 - embedding_output_loss: 0.1897 - embedding_output_mse: 0.1898 - loss: 0.0292 - val_class_output_accuracy: 0.9864 - val_class_output_f1_score: 0.9863 - val_class_output_loss: 0.0567 - val_embedding_output_embedding_cosine_accuracy: 0.9476 - val_embedding_output_loss: 0.0417 - val_embedding_output_mse: 0.0417 - val_loss: 0.0615 - learning_rate: 1.0000e-04
+Epoch 4/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 28s 69ms/step - class_output_accuracy: 0.9989 - class_output_f1_score: 0.9989 - class_output_loss: 0.0070 - embedding_output_embedding_cosine_accuracy: 0.8578 - embedding_output_loss: 0.1703 - embedding_output_mse: 0.1703 - loss: 0.0240 - val_class_output_accuracy: 0.9856 - val_class_output_f1_score: 0.9857 - val_class_output_loss: 0.0582 - val_embedding_output_embedding_cosine_accuracy: 0.9631 - val_embedding_output_loss: 0.0290 - val_embedding_output_mse: 0.0289 - val_loss: 0.0617 - learning_rate: 1.0000e-04
+Epoch 5/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 26s 64ms/step - class_output_accuracy: 0.9992 - class_output_f1_score: 0.9992 - class_output_loss: 0.0052 - embedding_output_embedding_cosine_accuracy: 0.8676 - embedding_output_loss: 0.1559 - embedding_output_mse: 0.1559 - loss: 0.0208 - val_class_output_accuracy: 0.9864 - val_class_output_f1_score: 0.9863 - val_class_output_loss: 0.0643 - val_embedding_output_embedding_cosine_accuracy: 0.9663 - val_embedding_output_loss: 0.0266 - val_embedding_output_mse: 0.0266 - val_loss: 0.0676 - learning_rate: 1.0000e-04
+Epoch 6/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 26s 63ms/step - class_output_accuracy: 0.9995 - class_output_f1_score: 0.9995 - class_output_loss: 0.0041 - embedding_output_embedding_cosine_accuracy: 0.8745 - embedding_output_loss: 0.1469 - embedding_output_mse: 0.1470 - loss: 0.0188 - val_class_output_accuracy: 0.9853 - val_class_output_f1_score: 0.9852 - val_class_output_loss: 0.0615 - val_embedding_output_embedding_cosine_accuracy: 0.9652 - val_embedding_output_loss: 0.0281 - val_embedding_output_mse: 0.0282 - val_loss: 0.0650 - learning_rate: 1.0000e-04
+Epoch 7/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 26s 63ms/step - class_output_accuracy: 0.9993 - class_output_f1_score: 0.9993 - class_output_loss: 0.0035 - embedding_output_embedding_cosine_accuracy: 0.8811 - embedding_output_loss: 0.1380 - embedding_output_mse: 0.1380 - loss: 0.0173 - val_class_output_accuracy: 0.9842 - val_class_output_f1_score: 0.9841 - val_class_output_loss: 0.0715 - val_embedding_output_embedding_cosine_accuracy: 0.9551 - val_embedding_output_loss: 0.0422 - val_embedding_output_mse: 0.0418 - val_loss: 0.0764 - learning_rate: 1.0000e-04
+Epoch 8/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 26s 64ms/step - class_output_accuracy: 0.9994 - class_output_f1_score: 0.9994 - class_output_loss: 0.0032 - embedding_output_embedding_cosine_accuracy: 0.8870 - embedding_output_loss: 0.1295 - embedding_output_mse: 0.1295 - loss: 0.0162 - val_class_output_accuracy: 0.9835 - val_class_output_f1_score: 0.9834 - val_class_output_loss: 0.0703 - val_embedding_output_embedding_cosine_accuracy: 0.9719 - val_embedding_output_loss: 0.0224 - val_embedding_output_mse: 0.0225 - val_loss: 0.0733 - learning_rate: 1.0000e-04
+Epoch 9/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 26s 64ms/step - class_output_accuracy: 0.9992 - class_output_f1_score: 0.9992 - class_output_loss: 0.0040 - embedding_output_embedding_cosine_accuracy: 0.8916 - embedding_output_loss: 0.1230 - embedding_output_mse: 0.1231 - loss: 0.0163 - val_class_output_accuracy: 0.9856 - val_class_output_f1_score: 0.9855 - val_class_output_loss: 0.0710 - val_embedding_output_embedding_cosine_accuracy: 0.9604 - val_embedding_output_loss: 0.0348 - val_embedding_output_mse: 0.0346 - val_loss: 0.0751 - learning_rate: 1.0000e-04
+Epoch 10/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 0s 59ms/step - class_output_accuracy: 0.9991 - class_output_f1_score: 0.9991 - class_output_loss: 0.0043 - embedding_output_embedding_cosine_accuracy: 0.8947 - embedding_output_loss: 0.1161 - embedding_output_mse: 0.1161 - loss: 0.0159
+Epoch 10: ReduceLROnPlateau reducing learning rate to 4.999999873689376e-05.
+407/407 ━━━━━━━━━━━━━━━━━━━━ 26s 64ms/step - class_output_accuracy: 0.9992 - class_output_f1_score: 0.9992 - class_output_loss: 0.0034 - embedding_output_embedding_cosine_accuracy: 0.8952 - embedding_output_loss: 0.1169 - embedding_output_mse: 0.1169 - loss: 0.0151 - val_class_output_accuracy: 0.9842 - val_class_output_f1_score: 0.9843 - val_class_output_loss: 0.0692 - val_embedding_output_embedding_cosine_accuracy: 0.9607 - val_embedding_output_loss: 0.0359 - val_embedding_output_mse: 0.0360 - val_loss: 0.0735 - learning_rate: 1.0000e-04
+Epoch 11/100
+407/407 ━━━━━━━━━━━━━━━━━━━━ 26s 64ms/step - class_output_accuracy: 0.9996 - class_output_f1_score: 0.9996 - class_output_loss: 0.0020 - embedding_output_embedding_cosine_accuracy: 0.9006 - embedding_output_loss: 0.1108 - embedding_output_mse: 0.1108 - loss: 0.0131 - val_class_output_accuracy: 0.9853 - val_class_output_f1_score: 0.9853 - val_class_output_loss: 0.0647 - val_embedding_output_embedding_cosine_accuracy: 0.9682 - val_embedding_output_loss: 0.0249 - val_embedding_output_mse: 0.0251 - val_loss: 0.0679 - learning_rate: 5.0000e-05
+Creating final deployable model...
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input (InputLayer)              │ (None, 1600)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (None, 256)            │       409,600 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ bn_1 (BatchNormalization)       │ (None, 256)            │         1,024 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation_1 (Activation)       │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_2 (Dense)                 │ (None, 256)            │        65,536 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ bn_2 (BatchNormalization)       │ (None, 256)            │         1,024 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation_2 (Activation)       │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_2 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_3 (Dense)                 │ (None, 256)            │        65,536 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ bn_3 (BatchNormalization)       │ (None, 256)            │         1,024 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ activation_3 (Activation)       │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_3 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ class_output (Dense)            │ (None, 2)              │           514 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+
+Evaluating final deployable model...
+88/88 ━━━━━━━━━━━━━━━━━━━━ 2s 20ms/step - accuracy: 0.9842 - loss: 0.0576
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+
+=== FINAL RESULTS ===
+Test Accuracy: 0.9842
+Test Loss: 0.0576
+Final model saved as 'final_deployable_student_model.h5'
+88/88 ━━━━━━━━━━━━━━━━━━━━ 1s 6ms/step
+
+======================================================================
+MULTI-TASK LEARNING TRAINING SUMMARY
+======================================================================
+Total epochs trained: 11
+Best validation accuracy: 0.9864
+Final validation accuracy: 0.9853
+Best embedding cosine similarity: 0.9719
+Final embedding cosine similarity: 0.9682
+
+Test Set Performance:
+              precision    recall  f1-score   support
+
+      others       0.99      0.99      0.99      2443
+      sheila       0.93      0.94      0.94       344
+
+    accuracy                           0.98      2787
+   macro avg       0.96      0.97      0.96      2787
+weighted avg       0.98      0.98      0.98      2787
+
+
+Overall Weighted Metrics:
+F1-Score: 0.9843
+Precision: 0.9843
+Recall: 0.9842
+Phase 4 completed successfully! ✅
+
+Creating Model Fusion
+Adding layer: input
+Warinng: Could not copy layer input: too many positional arguments
+Fusion dense_1 -> bn_1 -> activation_1
+Fusion dense_2 -> bn_2 -> activation_2
+Fusion dense_3 -> bn_3 -> activation_3
+Adding Dense layer: class_output
+
+Model: "final_deployable_student_fusion"
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input (InputLayer)              │ (None, 1600)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1_fusion (Dense)          │ (None, 256)            │       409,856 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_2_fusion (Dense)          │ (None, 256)            │        65,792 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_2 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_3_fusion (Dense)          │ (None, 256)            │        65,792 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_3 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ class_output (Dense)            │ (None, 2)              │           514 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+
+Model comparison:
+MSE: 0.00000000
+Max difference: 0.00000209
+Mean absolute difference: 0.00000003
+Closeness: 100.000000%
+
+Sample comparison:
+Original[0]: [0.00756326 0.9924367 ]
+Fused[0]:    [0.00756329 0.9924367 ]
+Difference:  [2.561137e-08 0.000000e+00]
+✓ Fusion successful! Models are mathematically equivalent.
+
+Model fusion completed successfully
+Final Model is ready for deployment on Syntiant ✅

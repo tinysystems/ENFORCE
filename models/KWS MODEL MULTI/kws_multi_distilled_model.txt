@@ -1,0 +1,390 @@
+ Original dataset: (27583, 40, 40), classes: [0 1 2 3 4]
+Original class distribution: {np.int64(0): np.int64(3929), np.int64(1): np.int64(3715), np.int64(2): np.int64(3908), np.int64(3): np.int64(11994), np.int64(4): np.int64(4037)}
+
+============================================================
+DATA DISTRIBUTION ANALYSIS
+============================================================
+Class distribution:
+Train: {np.int64(0): np.int64(2357), np.int64(1): np.int64(2229), np.int64(2): np.int64(2345), np.int64(3): np.int64(7196), np.int64(4): np.int64(2422)}
+Val:   {np.int64(0): np.int64(786), np.int64(1): np.int64(743), np.int64(2): np.int64(781), np.int64(3): np.int64(2399), np.int64(4): np.int64(808)}
+Test:  {np.int64(0): np.int64(786), np.int64(1): np.int64(743), np.int64(2): np.int64(782), np.int64(3): np.int64(2399), np.int64(4): np.int64(807)}
+
+Data value ranges:
+Train: min=0.0000, max=1.0000, mean=0.2987
+Val:   min=0.0000, max=1.0000, mean=0.2994
+Test:  min=0.0000, max=1.0000, mean=0.2991
+
+Data shapes:
+Train: (16549, 40, 40, 1), Val: (5517, 40, 40, 1), Test: (5517, 40, 40, 1)
+
+Mean activation per sample:
+Train mean: 0.2987 ± 0.1436
+Val mean:   0.2994 ± 0.1442
+============================================================
+Classes Number:  5
+Names:  ['no', 'up', 'down', 'unknown', 'yes']
+WARNING:absl:Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+Model: "teacher_kws_cnn"
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input (InputLayer)              │ (None, 40, 40, 1)      │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_18 (Conv2D)              │ (None, 40, 40, 32)     │           288 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_36          │ (None, 40, 40, 32)     │           128 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_36 (ReLU)                 │ (None, 40, 40, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_18 (MaxPooling2D) │ (None, 20, 20, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_36 (Dropout)            │ (None, 20, 20, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_19 (Conv2D)              │ (None, 20, 20, 64)     │        18,432 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_37          │ (None, 20, 20, 64)     │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_37 (ReLU)                 │ (None, 20, 20, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_19 (MaxPooling2D) │ (None, 10, 10, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_37 (Dropout)            │ (None, 10, 10, 64)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_20 (Conv2D)              │ (None, 10, 10, 128)    │        73,728 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_38          │ (None, 10, 10, 128)    │           512 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_38 (ReLU)                 │ (None, 10, 10, 128)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_20 (MaxPooling2D) │ (None, 5, 5, 128)      │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_38 (Dropout)            │ (None, 5, 5, 128)      │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ flatten_6 (Flatten)             │ (None, 3200)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_24 (Dense)                │ (None, 256)            │       819,200 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_39          │ (None, 256)            │         1,024 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_39 (ReLU)                 │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_39 (Dropout)            │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_25 (Dense)                │ (None, 128)            │        32,768 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_40          │ (None, 128)            │           512 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_40 (ReLU)                 │ (None, 128)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_40 (Dropout)            │ (None, 128)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_26 (Dense)                │ (None, 64)             │         8,192 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_41          │ (None, 64)             │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ re_lu_41 (ReLU)                 │ (None, 64)             │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_41 (Dropout)            │ (None, 64)             │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_27 (Dense)                │ (None, 5)              │           325 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+
+ Total params: 955,623 (3.65 MB)
+
+ Trainable params: 954,277 (3.64 MB)
+
+ Non-trainable params: 1,344 (5.25 KB)
+
+ Optimizer params: 2 (12.00 B)
+
+ 
+Student Model (Target Simple Dense Network):
+Model: "student_dnn"
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input (InputLayer)              │ (None, 1600)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (None, 256)            │       409,856 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout (Dropout)               │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_2 (Dense)                 │ (None, 256)            │        65,792 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_3 (Dense)                 │ (None, 256)            │        65,792 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_2 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ logits (Dense)                  │ (None, 5)              │         1,285 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+
+ Total params: 542,725 (2.07 MB)
+
+ Trainable params: 542,725 (2.07 MB)
+
+ Non-trainable params: 0 (0.00 B)
+
+
+============================================================
+COMPRESSING COMPLEX MODEL TO SIMPLE DENSE NETWORK
+============================================================
+Teacher: Sparse Conv Model (955,621 params)
+Student: Simple Dense Model (542,725 params)
+Compression Ratio: 1.8x
+============================================================
+Epoch 1/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 15s 16ms/step - accuracy: 0.4881 - distill_loss: 0.0033 - f1_score: 0.4505 - student_loss: 1.3974 - total_loss: 0.3455 - val_accuracy: 0.6011 - val_distill_loss: 0.0022 - val_f1_score: 0.5722 - val_student_loss: 1.3176 - val_total_loss: 0.3069 - learning_rate: 0.0020
+Epoch 2/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 4ms/step - accuracy: 0.5976 - distill_loss: 0.0028 - f1_score: 0.5732 - student_loss: 1.2577 - total_loss: 0.3085 - val_accuracy: 0.6667 - val_distill_loss: 0.0019 - val_f1_score: 0.6314 - val_student_loss: 1.2340 - val_total_loss: 0.2856 - learning_rate: 0.0020
+Epoch 3/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.6302 - distill_loss: 0.0028 - f1_score: 0.6132 - student_loss: 1.2072 - total_loss: 0.2964 - val_accuracy: 0.6654 - val_distill_loss: 0.0019 - val_f1_score: 0.6646 - val_student_loss: 1.2466 - val_total_loss: 0.2871 - learning_rate: 0.0020
+Epoch 4/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.6559 - distill_loss: 0.0027 - f1_score: 0.6425 - student_loss: 1.1657 - total_loss: 0.2870 - val_accuracy: 0.7180 - val_distill_loss: 0.0017 - val_f1_score: 0.6879 - val_student_loss: 1.2116 - val_total_loss: 0.2763 - learning_rate: 0.0020
+Epoch 5/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 5s 5ms/step - accuracy: 0.6683 - distill_loss: 0.0026 - f1_score: 0.6582 - student_loss: 1.1442 - total_loss: 0.2816 - val_accuracy: 0.7212 - val_distill_loss: 0.0017 - val_f1_score: 0.7054 - val_student_loss: 1.1791 - val_total_loss: 0.2692 - learning_rate: 0.0020
+Epoch 6/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.6829 - distill_loss: 0.0026 - f1_score: 0.6725 - student_loss: 1.1256 - total_loss: 0.2771 - val_accuracy: 0.6966 - val_distill_loss: 0.0018 - val_f1_score: 0.6893 - val_student_loss: 1.2063 - val_total_loss: 0.2781 - learning_rate: 0.0020
+Epoch 7/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.6898 - distill_loss: 0.0026 - f1_score: 0.6817 - student_loss: 1.1126 - total_loss: 0.2744 - val_accuracy: 0.7129 - val_distill_loss: 0.0018 - val_f1_score: 0.7098 - val_student_loss: 1.1587 - val_total_loss: 0.2675 - learning_rate: 0.0020
+Epoch 8/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.6964 - distill_loss: 0.0026 - f1_score: 0.6883 - student_loss: 1.1020 - total_loss: 0.2718 - val_accuracy: 0.7200 - val_distill_loss: 0.0018 - val_f1_score: 0.6951 - val_student_loss: 1.1540 - val_total_loss: 0.2663 - learning_rate: 0.0020
+Epoch 9/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.7074 - distill_loss: 0.0025 - f1_score: 0.6999 - student_loss: 1.0856 - total_loss: 0.2675 - val_accuracy: 0.7394 - val_distill_loss: 0.0017 - val_f1_score: 0.7294 - val_student_loss: 1.1341 - val_total_loss: 0.2600 - learning_rate: 0.0020
+Epoch 10/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 4s 5ms/step - accuracy: 0.7120 - distill_loss: 0.0025 - f1_score: 0.7046 - student_loss: 1.0794 - total_loss: 0.2665 - val_accuracy: 0.7294 - val_distill_loss: 0.0019 - val_f1_score: 0.7146 - val_student_loss: 1.1208 - val_total_loss: 0.2614 - learning_rate: 0.0020
+Epoch 11/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.7235 - distill_loss: 0.0025 - f1_score: 0.7175 - student_loss: 1.0616 - total_loss: 0.2623 - val_accuracy: 0.7207 - val_distill_loss: 0.0018 - val_f1_score: 0.7212 - val_student_loss: 1.1475 - val_total_loss: 0.2648 - learning_rate: 0.0020
+Epoch 12/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.7226 - distill_loss: 0.0025 - f1_score: 0.7178 - student_loss: 1.0606 - total_loss: 0.2621 - val_accuracy: 0.7316 - val_distill_loss: 0.0019 - val_f1_score: 0.7203 - val_student_loss: 1.1135 - val_total_loss: 0.2602 - learning_rate: 0.0020
+Epoch 13/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.7255 - distill_loss: 0.0025 - f1_score: 0.7183 - student_loss: 1.0612 - total_loss: 0.2622 - val_accuracy: 0.7388 - val_distill_loss: 0.0018 - val_f1_score: 0.7333 - val_student_loss: 1.0974 - val_total_loss: 0.2561 - learning_rate: 0.0020
+Epoch 14/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.7362 - distill_loss: 0.0025 - f1_score: 0.7308 - student_loss: 1.0444 - total_loss: 0.2583 - val_accuracy: 0.7328 - val_distill_loss: 0.0017 - val_f1_score: 0.7297 - val_student_loss: 1.1177 - val_total_loss: 0.2582 - learning_rate: 0.0020
+Epoch 15/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.7407 - distill_loss: 0.0024 - f1_score: 0.7347 - student_loss: 1.0323 - total_loss: 0.2552 - val_accuracy: 0.7388 - val_distill_loss: 0.0018 - val_f1_score: 0.7335 - val_student_loss: 1.1014 - val_total_loss: 0.2562 - learning_rate: 0.0020
+Epoch 16/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.7492 - distill_loss: 0.0024 - f1_score: 0.7434 - student_loss: 1.0268 - total_loss: 0.2534 - val_accuracy: 0.7207 - val_distill_loss: 0.0021 - val_f1_score: 0.7090 - val_student_loss: 1.1227 - val_total_loss: 0.2670 - learning_rate: 0.0020
+Epoch 17/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.7481 - distill_loss: 0.0024 - f1_score: 0.7421 - student_loss: 1.0228 - total_loss: 0.2530 - val_accuracy: 0.7363 - val_distill_loss: 0.0018 - val_f1_score: 0.7314 - val_student_loss: 1.1284 - val_total_loss: 0.2614 - learning_rate: 0.0020
+Epoch 18/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.7535 - distill_loss: 0.0024 - f1_score: 0.7461 - student_loss: 1.0156 - total_loss: 0.2508 - val_accuracy: 0.7355 - val_distill_loss: 0.0021 - val_f1_score: 0.7216 - val_student_loss: 1.0949 - val_total_loss: 0.2609 - learning_rate: 0.0020
+Epoch 19/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 5s 5ms/step - accuracy: 0.7633 - distill_loss: 0.0024 - f1_score: 0.7573 - student_loss: 1.0061 - total_loss: 0.2489 - val_accuracy: 0.7339 - val_distill_loss: 0.0019 - val_f1_score: 0.7291 - val_student_loss: 1.0949 - val_total_loss: 0.2577 - learning_rate: 0.0020
+Epoch 20/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.7594 - distill_loss: 0.0024 - f1_score: 0.7522 - student_loss: 1.0083 - total_loss: 0.2490 - val_accuracy: 0.7366 - val_distill_loss: 0.0019 - val_f1_score: 0.7310 - val_student_loss: 1.0889 - val_total_loss: 0.2559 - learning_rate: 0.0020
+Epoch 21/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.7622 - distill_loss: 0.0024 - f1_score: 0.7562 - student_loss: 1.0049 - total_loss: 0.2485 - val_accuracy: 0.7374 - val_distill_loss: 0.0019 - val_f1_score: 0.7260 - val_student_loss: 1.0847 - val_total_loss: 0.2549 - learning_rate: 0.0020
+Epoch 22/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 4s 5ms/step - accuracy: 0.7609 - distill_loss: 0.0024 - f1_score: 0.7542 - student_loss: 1.0042 - total_loss: 0.2486 - val_accuracy: 0.7484 - val_distill_loss: 0.0019 - val_f1_score: 0.7348 - val_student_loss: 1.0876 - val_total_loss: 0.2545 - learning_rate: 0.0020
+Epoch 23/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.7683 - distill_loss: 0.0024 - f1_score: 0.7634 - student_loss: 0.9942 - total_loss: 0.2459 - val_accuracy: 0.7316 - val_distill_loss: 0.0020 - val_f1_score: 0.7171 - val_student_loss: 1.0964 - val_total_loss: 0.2586 - learning_rate: 0.0020
+Epoch 24/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.7748 - distill_loss: 0.0023 - f1_score: 0.7698 - student_loss: 0.9906 - total_loss: 0.2447 - val_accuracy: 0.7522 - val_distill_loss: 0.0018 - val_f1_score: 0.7432 - val_student_loss: 1.0796 - val_total_loss: 0.2521 - learning_rate: 0.0020
+Epoch 25/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.7750 - distill_loss: 0.0023 - f1_score: 0.7701 - student_loss: 0.9878 - total_loss: 0.2445 - val_accuracy: 0.7365 - val_distill_loss: 0.0021 - val_f1_score: 0.7295 - val_student_loss: 1.0692 - val_total_loss: 0.2556 - learning_rate: 0.0020
+Epoch 26/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.7762 - distill_loss: 0.0023 - f1_score: 0.7707 - student_loss: 0.9800 - total_loss: 0.2426 - val_accuracy: 0.7549 - val_distill_loss: 0.0020 - val_f1_score: 0.7472 - val_student_loss: 1.0520 - val_total_loss: 0.2503 - learning_rate: 0.0020
+Epoch 27/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.7791 - distill_loss: 0.0023 - f1_score: 0.7734 - student_loss: 0.9767 - total_loss: 0.2419 - val_accuracy: 0.7423 - val_distill_loss: 0.0020 - val_f1_score: 0.7362 - val_student_loss: 1.0815 - val_total_loss: 0.2558 - learning_rate: 0.0020
+Epoch 28/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.7793 - distill_loss: 0.0023 - f1_score: 0.7735 - student_loss: 0.9766 - total_loss: 0.2415 - val_accuracy: 0.7558 - val_distill_loss: 0.0019 - val_f1_score: 0.7455 - val_student_loss: 1.0656 - val_total_loss: 0.2504 - learning_rate: 0.0020
+Epoch 29/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.7875 - distill_loss: 0.0023 - f1_score: 0.7819 - student_loss: 0.9653 - total_loss: 0.2390 - val_accuracy: 0.7495 - val_distill_loss: 0.0020 - val_f1_score: 0.7410 - val_student_loss: 1.0655 - val_total_loss: 0.2523 - learning_rate: 0.0020
+Epoch 30/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.7889 - distill_loss: 0.0023 - f1_score: 0.7839 - student_loss: 0.9618 - total_loss: 0.2379 - val_accuracy: 0.7519 - val_distill_loss: 0.0021 - val_f1_score: 0.7429 - val_student_loss: 1.0456 - val_total_loss: 0.2502 - learning_rate: 0.0020
+Epoch 31/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.7949 - distill_loss: 0.0023 - f1_score: 0.7895 - student_loss: 0.9489 - total_loss: 0.2349 - val_accuracy: 0.7580 - val_distill_loss: 0.0021 - val_f1_score: 0.7444 - val_student_loss: 1.0411 - val_total_loss: 0.2507 - learning_rate: 0.0020
+Epoch 32/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.7961 - distill_loss: 0.0023 - f1_score: 0.7922 - student_loss: 0.9513 - total_loss: 0.2357 - val_accuracy: 0.7528 - val_distill_loss: 0.0019 - val_f1_score: 0.7430 - val_student_loss: 1.0632 - val_total_loss: 0.2511 - learning_rate: 0.0020
+Epoch 33/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.7900 - distill_loss: 0.0023 - f1_score: 0.7847 - student_loss: 0.9592 - total_loss: 0.2377 - val_accuracy: 0.7435 - val_distill_loss: 0.0021 - val_f1_score: 0.7361 - val_student_loss: 1.0568 - val_total_loss: 0.2532 - learning_rate: 0.0020
+Epoch 34/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 4ms/step - accuracy: 0.7948 - distill_loss: 0.0023 - f1_score: 0.7873 - student_loss: 0.9603 - total_loss: 0.2373
+Epoch 34: ReduceLROnPlateau reducing learning rate to 0.0014000000664964318.
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.7948 - distill_loss: 0.0023 - f1_score: 0.7902 - student_loss: 0.9571 - total_loss: 0.2367 - val_accuracy: 0.7519 - val_distill_loss: 0.0020 - val_f1_score: 0.7423 - val_student_loss: 1.0526 - val_total_loss: 0.2514 - learning_rate: 0.0020
+Epoch 35/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.8083 - distill_loss: 0.0022 - f1_score: 0.8050 - student_loss: 0.9270 - total_loss: 0.2290 - val_accuracy: 0.7615 - val_distill_loss: 0.0021 - val_f1_score: 0.7571 - val_student_loss: 1.0346 - val_total_loss: 0.2481 - learning_rate: 0.0014
+Epoch 36/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8217 - distill_loss: 0.0021 - f1_score: 0.8184 - student_loss: 0.9089 - total_loss: 0.2246 - val_accuracy: 0.7769 - val_distill_loss: 0.0022 - val_f1_score: 0.7648 - val_student_loss: 1.0085 - val_total_loss: 0.2450 - learning_rate: 0.0014
+Epoch 37/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8175 - distill_loss: 0.0022 - f1_score: 0.8139 - student_loss: 0.9112 - total_loss: 0.2253 - val_accuracy: 0.7705 - val_distill_loss: 0.0021 - val_f1_score: 0.7582 - val_student_loss: 1.0139 - val_total_loss: 0.2457 - learning_rate: 0.0014
+Epoch 38/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8243 - distill_loss: 0.0021 - f1_score: 0.8210 - student_loss: 0.9059 - total_loss: 0.2240 - val_accuracy: 0.7627 - val_distill_loss: 0.0021 - val_f1_score: 0.7554 - val_student_loss: 1.0223 - val_total_loss: 0.2470 - learning_rate: 0.0014
+Epoch 39/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8212 - distill_loss: 0.0022 - f1_score: 0.8176 - student_loss: 0.9099 - total_loss: 0.2251 - val_accuracy: 0.7700 - val_distill_loss: 0.0019 - val_f1_score: 0.7623 - val_student_loss: 1.0204 - val_total_loss: 0.2427 - learning_rate: 0.0014
+Epoch 40/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.8226 - distill_loss: 0.0021 - f1_score: 0.8191 - student_loss: 0.9040 - total_loss: 0.2234 - val_accuracy: 0.7702 - val_distill_loss: 0.0023 - val_f1_score: 0.7595 - val_student_loss: 1.0223 - val_total_loss: 0.2495 - learning_rate: 0.0014
+Epoch 41/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8224 - distill_loss: 0.0021 - f1_score: 0.8192 - student_loss: 0.9019 - total_loss: 0.2232 - val_accuracy: 0.7658 - val_distill_loss: 0.0020 - val_f1_score: 0.7557 - val_student_loss: 1.0390 - val_total_loss: 0.2475 - learning_rate: 0.0014
+Epoch 42/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8248 - distill_loss: 0.0021 - f1_score: 0.8219 - student_loss: 0.8997 - total_loss: 0.2225 - val_accuracy: 0.7740 - val_distill_loss: 0.0020 - val_f1_score: 0.7624 - val_student_loss: 1.0255 - val_total_loss: 0.2451 - learning_rate: 0.0014
+Epoch 43/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8307 - distill_loss: 0.0021 - f1_score: 0.8277 - student_loss: 0.8923 - total_loss: 0.2208 - val_accuracy: 0.7676 - val_distill_loss: 0.0022 - val_f1_score: 0.7554 - val_student_loss: 0.9997 - val_total_loss: 0.2444 - learning_rate: 0.0014
+Epoch 44/100
+514/518 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - accuracy: 0.8224 - distill_loss: 0.0021 - f1_score: 0.8186 - student_loss: 0.9041 - total_loss: 0.2234
+Epoch 44: ReduceLROnPlateau reducing learning rate to 0.0009800000465475021.
+518/518 ━━━━━━━━━━━━━━━━━━━━ 4s 7ms/step - accuracy: 0.8320 - distill_loss: 0.0021 - f1_score: 0.8287 - student_loss: 0.8900 - total_loss: 0.2200 - val_accuracy: 0.7676 - val_distill_loss: 0.0023 - val_f1_score: 0.7587 - val_student_loss: 1.0082 - val_total_loss: 0.2484 - learning_rate: 0.0014
+Epoch 45/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8388 - distill_loss: 0.0021 - f1_score: 0.8366 - student_loss: 0.8737 - total_loss: 0.2159 - val_accuracy: 0.7700 - val_distill_loss: 0.0021 - val_f1_score: 0.7614 - val_student_loss: 1.0082 - val_total_loss: 0.2445 - learning_rate: 9.8000e-04
+Epoch 46/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8430 - distill_loss: 0.0020 - f1_score: 0.8398 - student_loss: 0.8703 - total_loss: 0.2148 - val_accuracy: 0.7694 - val_distill_loss: 0.0022 - val_f1_score: 0.7597 - val_student_loss: 1.0053 - val_total_loss: 0.2441 - learning_rate: 9.8000e-04
+Epoch 47/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8466 - distill_loss: 0.0020 - f1_score: 0.8437 - student_loss: 0.8647 - total_loss: 0.2137 - val_accuracy: 0.7703 - val_distill_loss: 0.0023 - val_f1_score: 0.7589 - val_student_loss: 0.9928 - val_total_loss: 0.2452 - learning_rate: 9.8000e-04
+Epoch 48/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8392 - distill_loss: 0.0020 - f1_score: 0.8361 - student_loss: 0.8729 - total_loss: 0.2154 - val_accuracy: 0.7680 - val_distill_loss: 0.0023 - val_f1_score: 0.7590 - val_student_loss: 0.9943 - val_total_loss: 0.2441 - learning_rate: 9.8000e-04
+Epoch 49/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.8486 - distill_loss: 0.0020 - f1_score: 0.8462 - student_loss: 0.8617 - total_loss: 0.2130 - val_accuracy: 0.7790 - val_distill_loss: 0.0021 - val_f1_score: 0.7668 - val_student_loss: 1.0090 - val_total_loss: 0.2429 - learning_rate: 9.8000e-04
+Epoch 50/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8523 - distill_loss: 0.0020 - f1_score: 0.8492 - student_loss: 0.8556 - total_loss: 0.2113 - val_accuracy: 0.7743 - val_distill_loss: 0.0023 - val_f1_score: 0.7653 - val_student_loss: 0.9866 - val_total_loss: 0.2435 - learning_rate: 9.8000e-04
+Epoch 51/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8497 - distill_loss: 0.0020 - f1_score: 0.8474 - student_loss: 0.8559 - total_loss: 0.2118 - val_accuracy: 0.7720 - val_distill_loss: 0.0022 - val_f1_score: 0.7651 - val_student_loss: 0.9990 - val_total_loss: 0.2442 - learning_rate: 9.8000e-04
+Epoch 52/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8489 - distill_loss: 0.0020 - f1_score: 0.8463 - student_loss: 0.8580 - total_loss: 0.2121 - val_accuracy: 0.7696 - val_distill_loss: 0.0024 - val_f1_score: 0.7618 - val_student_loss: 0.9962 - val_total_loss: 0.2464 - learning_rate: 9.8000e-04
+Epoch 53/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 4s 7ms/step - accuracy: 0.8506 - distill_loss: 0.0020 - f1_score: 0.8478 - student_loss: 0.8552 - total_loss: 0.2113 - val_accuracy: 0.7761 - val_distill_loss: 0.0022 - val_f1_score: 0.7675 - val_student_loss: 0.9984 - val_total_loss: 0.2444 - learning_rate: 9.8000e-04
+Epoch 54/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8540 - distill_loss: 0.0020 - f1_score: 0.8515 - student_loss: 0.8512 - total_loss: 0.2104 - val_accuracy: 0.7720 - val_distill_loss: 0.0022 - val_f1_score: 0.7635 - val_student_loss: 1.0017 - val_total_loss: 0.2444 - learning_rate: 9.8000e-04
+Epoch 55/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8524 - distill_loss: 0.0020 - f1_score: 0.8500 - student_loss: 0.8548 - total_loss: 0.2112 - val_accuracy: 0.7711 - val_distill_loss: 0.0022 - val_f1_score: 0.7598 - val_student_loss: 0.9992 - val_total_loss: 0.2429 - learning_rate: 9.8000e-04
+Epoch 56/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8566 - distill_loss: 0.0020 - f1_score: 0.8542 - student_loss: 0.8488 - total_loss: 0.2096 - val_accuracy: 0.7747 - val_distill_loss: 0.0024 - val_f1_score: 0.7650 - val_student_loss: 0.9795 - val_total_loss: 0.2439 - learning_rate: 9.8000e-04
+Epoch 57/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8570 - distill_loss: 0.0020 - f1_score: 0.8548 - student_loss: 0.8470 - total_loss: 0.2094 - val_accuracy: 0.7703 - val_distill_loss: 0.0022 - val_f1_score: 0.7570 - val_student_loss: 1.0033 - val_total_loss: 0.2456 - learning_rate: 9.8000e-04
+Epoch 58/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 5s 5ms/step - accuracy: 0.8551 - distill_loss: 0.0020 - f1_score: 0.8532 - student_loss: 0.8496 - total_loss: 0.2100 - val_accuracy: 0.7722 - val_distill_loss: 0.0023 - val_f1_score: 0.7625 - val_student_loss: 0.9969 - val_total_loss: 0.2458 - learning_rate: 9.8000e-04
+Epoch 59/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8546 - distill_loss: 0.0020 - f1_score: 0.8511 - student_loss: 0.8513 - total_loss: 0.2104 - val_accuracy: 0.7694 - val_distill_loss: 0.0022 - val_f1_score: 0.7571 - val_student_loss: 1.0016 - val_total_loss: 0.2435 - learning_rate: 9.8000e-04
+Epoch 60/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8567 - distill_loss: 0.0020 - f1_score: 0.8535 - student_loss: 0.8461 - total_loss: 0.2091 - val_accuracy: 0.7676 - val_distill_loss: 0.0025 - val_f1_score: 0.7587 - val_student_loss: 0.9831 - val_total_loss: 0.2465 - learning_rate: 9.8000e-04
+Epoch 61/100
+512/518 ━━━━━━━━━━━━━━━━━━━━ 0s 4ms/step - accuracy: 0.8610 - distill_loss: 0.0020 - f1_score: 0.8582 - student_loss: 0.8413 - total_loss: 0.2083
+Epoch 61: ReduceLROnPlateau reducing learning rate to 0.0006860000081360339.
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.8594 - distill_loss: 0.0020 - f1_score: 0.8563 - student_loss: 0.8428 - total_loss: 0.2083 - val_accuracy: 0.7714 - val_distill_loss: 0.0021 - val_f1_score: 0.7633 - val_student_loss: 1.0168 - val_total_loss: 0.2458 - learning_rate: 9.8000e-04
+Epoch 62/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.8631 - distill_loss: 0.0020 - f1_score: 0.8606 - student_loss: 0.8364 - total_loss: 0.2064 - val_accuracy: 0.7785 - val_distill_loss: 0.0022 - val_f1_score: 0.7680 - val_student_loss: 0.9839 - val_total_loss: 0.2416 - learning_rate: 6.8600e-04
+Epoch 63/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8669 - distill_loss: 0.0019 - f1_score: 0.8647 - student_loss: 0.8281 - total_loss: 0.2044 - val_accuracy: 0.7751 - val_distill_loss: 0.0023 - val_f1_score: 0.7648 - val_student_loss: 0.9926 - val_total_loss: 0.2441 - learning_rate: 6.8600e-04
+Epoch 64/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8696 - distill_loss: 0.0019 - f1_score: 0.8679 - student_loss: 0.8238 - total_loss: 0.2033 - val_accuracy: 0.7763 - val_distill_loss: 0.0023 - val_f1_score: 0.7618 - val_student_loss: 0.9873 - val_total_loss: 0.2426 - learning_rate: 6.8600e-04
+Epoch 65/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8708 - distill_loss: 0.0019 - f1_score: 0.8690 - student_loss: 0.8238 - total_loss: 0.2034 - val_accuracy: 0.7792 - val_distill_loss: 0.0023 - val_f1_score: 0.7686 - val_student_loss: 0.9881 - val_total_loss: 0.2429 - learning_rate: 6.8600e-04
+Epoch 66/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.8661 - distill_loss: 0.0019 - f1_score: 0.8636 - student_loss: 0.8295 - total_loss: 0.2049 - val_accuracy: 0.7790 - val_distill_loss: 0.0023 - val_f1_score: 0.7670 - val_student_loss: 0.9843 - val_total_loss: 0.2425 - learning_rate: 6.8600e-04
+Epoch 67/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8689 - distill_loss: 0.0020 - f1_score: 0.8672 - student_loss: 0.8252 - total_loss: 0.2041 - val_accuracy: 0.7785 - val_distill_loss: 0.0023 - val_f1_score: 0.7696 - val_student_loss: 0.9846 - val_total_loss: 0.2432 - learning_rate: 6.8600e-04
+Epoch 68/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8712 - distill_loss: 0.0019 - f1_score: 0.8689 - student_loss: 0.8216 - total_loss: 0.2027 - val_accuracy: 0.7734 - val_distill_loss: 0.0023 - val_f1_score: 0.7635 - val_student_loss: 0.9926 - val_total_loss: 0.2450 - learning_rate: 6.8600e-04
+Epoch 69/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8759 - distill_loss: 0.0019 - f1_score: 0.8745 - student_loss: 0.8119 - total_loss: 0.2005 - val_accuracy: 0.7763 - val_distill_loss: 0.0024 - val_f1_score: 0.7681 - val_student_loss: 0.9877 - val_total_loss: 0.2459 - learning_rate: 6.8600e-04
+Epoch 70/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8730 - distill_loss: 0.0019 - f1_score: 0.8715 - student_loss: 0.8170 - total_loss: 0.2019 - val_accuracy: 0.7736 - val_distill_loss: 0.0023 - val_f1_score: 0.7655 - val_student_loss: 0.9915 - val_total_loss: 0.2450 - learning_rate: 6.8600e-04
+Epoch 71/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.8738 - distill_loss: 0.0019 - f1_score: 0.8724 - student_loss: 0.8143 - total_loss: 0.2012 - val_accuracy: 0.7720 - val_distill_loss: 0.0023 - val_f1_score: 0.7613 - val_student_loss: 0.9914 - val_total_loss: 0.2449 - learning_rate: 6.8600e-04
+Epoch 72/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8709 - distill_loss: 0.0019 - f1_score: 0.8690 - student_loss: 0.8217 - total_loss: 0.2029 - val_accuracy: 0.7711 - val_distill_loss: 0.0024 - val_f1_score: 0.7610 - val_student_loss: 0.9840 - val_total_loss: 0.2452 - learning_rate: 6.8600e-04
+Epoch 73/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8759 - distill_loss: 0.0019 - f1_score: 0.8746 - student_loss: 0.8141 - total_loss: 0.2012 - val_accuracy: 0.7742 - val_distill_loss: 0.0023 - val_f1_score: 0.7636 - val_student_loss: 0.9927 - val_total_loss: 0.2455 - learning_rate: 6.8600e-04
+Epoch 74/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 2s 5ms/step - accuracy: 0.8769 - distill_loss: 0.0019 - f1_score: 0.8758 - student_loss: 0.8088 - total_loss: 0.1999 - val_accuracy: 0.7743 - val_distill_loss: 0.0024 - val_f1_score: 0.7654 - val_student_loss: 0.9847 - val_total_loss: 0.2455 - learning_rate: 6.8600e-04
+Epoch 75/100
+508/518 ━━━━━━━━━━━━━━━━━━━━ 0s 4ms/step - accuracy: 0.8802 - distill_loss: 0.0019 - f1_score: 0.8792 - student_loss: 0.8048 - total_loss: 0.1986
+Epoch 75: ReduceLROnPlateau reducing learning rate to 0.0004801999893970787.
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.8774 - distill_loss: 0.0019 - f1_score: 0.8762 - student_loss: 0.8099 - total_loss: 0.2000 - val_accuracy: 0.7747 - val_distill_loss: 0.0025 - val_f1_score: 0.7617 - val_student_loss: 0.9783 - val_total_loss: 0.2452 - learning_rate: 6.8600e-04
+Epoch 76/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8831 - distill_loss: 0.0019 - f1_score: 0.8818 - student_loss: 0.8013 - total_loss: 0.1978 - val_accuracy: 0.7729 - val_distill_loss: 0.0025 - val_f1_score: 0.7619 - val_student_loss: 0.9838 - val_total_loss: 0.2463 - learning_rate: 4.8020e-04
+Epoch 77/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8834 - distill_loss: 0.0019 - f1_score: 0.8822 - student_loss: 0.8006 - total_loss: 0.1977 - val_accuracy: 0.7765 - val_distill_loss: 0.0024 - val_f1_score: 0.7642 - val_student_loss: 0.9933 - val_total_loss: 0.2458 - learning_rate: 4.8020e-04
+Epoch 78/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8844 - distill_loss: 0.0019 - f1_score: 0.8832 - student_loss: 0.7959 - total_loss: 0.1966 - val_accuracy: 0.7749 - val_distill_loss: 0.0024 - val_f1_score: 0.7638 - val_student_loss: 0.9858 - val_total_loss: 0.2456 - learning_rate: 4.8020e-04
+Epoch 79/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8853 - distill_loss: 0.0019 - f1_score: 0.8832 - student_loss: 0.7989 - total_loss: 0.1972 - val_accuracy: 0.7807 - val_distill_loss: 0.0023 - val_f1_score: 0.7674 - val_student_loss: 0.9795 - val_total_loss: 0.2420 - learning_rate: 4.8020e-04
+Epoch 80/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.8856 - distill_loss: 0.0019 - f1_score: 0.8843 - student_loss: 0.7974 - total_loss: 0.1969 - val_accuracy: 0.7754 - val_distill_loss: 0.0023 - val_f1_score: 0.7645 - val_student_loss: 0.9888 - val_total_loss: 0.2442 - learning_rate: 4.8020e-04
+Epoch 81/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8841 - distill_loss: 0.0019 - f1_score: 0.8829 - student_loss: 0.7982 - total_loss: 0.1971 - val_accuracy: 0.7751 - val_distill_loss: 0.0023 - val_f1_score: 0.7625 - val_student_loss: 0.9867 - val_total_loss: 0.2437 - learning_rate: 4.8020e-04
+Epoch 82/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8807 - distill_loss: 0.0019 - f1_score: 0.8797 - student_loss: 0.7987 - total_loss: 0.1975 - val_accuracy: 0.7722 - val_distill_loss: 0.0025 - val_f1_score: 0.7615 - val_student_loss: 0.9882 - val_total_loss: 0.2468 - learning_rate: 4.8020e-04
+Epoch 83/100
+516/518 ━━━━━━━━━━━━━━━━━━━━ 0s 4ms/step - accuracy: 0.8835 - distill_loss: 0.0019 - f1_score: 0.8821 - student_loss: 0.8004 - total_loss: 0.1973
+Epoch 83: ReduceLROnPlateau reducing learning rate to 0.0003361399925779551.
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8852 - distill_loss: 0.0019 - f1_score: 0.8837 - student_loss: 0.7974 - total_loss: 0.1968 - val_accuracy: 0.7752 - val_distill_loss: 0.0024 - val_f1_score: 0.7626 - val_student_loss: 0.9811 - val_total_loss: 0.2452 - learning_rate: 4.8020e-04
+Epoch 84/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8918 - distill_loss: 0.0018 - f1_score: 0.8902 - student_loss: 0.7861 - total_loss: 0.1939 - val_accuracy: 0.7751 - val_distill_loss: 0.0025 - val_f1_score: 0.7606 - val_student_loss: 0.9846 - val_total_loss: 0.2464 - learning_rate: 3.3614e-04
+Epoch 85/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.8900 - distill_loss: 0.0019 - f1_score: 0.8885 - student_loss: 0.7905 - total_loss: 0.1951 - val_accuracy: 0.7800 - val_distill_loss: 0.0023 - val_f1_score: 0.7659 - val_student_loss: 0.9756 - val_total_loss: 0.2419 - learning_rate: 3.3614e-04
+Epoch 86/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 3s 5ms/step - accuracy: 0.8898 - distill_loss: 0.0018 - f1_score: 0.8883 - student_loss: 0.7885 - total_loss: 0.1946 - val_accuracy: 0.7771 - val_distill_loss: 0.0024 - val_f1_score: 0.7642 - val_student_loss: 0.9789 - val_total_loss: 0.2442 - learning_rate: 3.3614e-04
+Epoch 87/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 5s 5ms/step - accuracy: 0.8897 - distill_loss: 0.0018 - f1_score: 0.8893 - student_loss: 0.7854 - total_loss: 0.1939 - val_accuracy: 0.7734 - val_distill_loss: 0.0024 - val_f1_score: 0.7608 - val_student_loss: 0.9737 - val_total_loss: 0.2437 - learning_rate: 3.3614e-04
+Epoch 87: early stopping
+Restoring model weights from the end of the best epoch: 67.
+173/173 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+============================================================
+TRAINING SUMMARY (F1-Score Focus)
+============================================================
+Total epochs trained: 87
+Final training F1-score: 0.8893
+Final validation F1-score: 0.7608
+Best validation F1-score: 0.7696
+Final training accuracy: 0.8897
+Final validation accuracy: 0.7734
+Final training loss: 0.1939
+Final validation loss: 0.2437
+
+Test Set Performance:
+              precision    recall  f1-score   support
+
+          no       0.68      0.73      0.70       786
+          up       0.87      0.84      0.86       743
+        down       0.72      0.59      0.65       782
+     unknown       0.77      0.85      0.81      2399
+         yes       0.94      0.80      0.86       807
+
+    accuracy                           0.79      5517
+   macro avg       0.80      0.76      0.78      5517
+weighted avg       0.79      0.79      0.78      5517
+
+
+Overall Weighted F1-Score on Test Set: 0.7848
+
+Compressed model saved as compressed_dense_student.h5
+
+============================================================
+COMPRESSION RESULTS
+============================================================
+Final Test Results:
+  Total Loss: 0.2413
+  Distillation Loss: 0.0023
+  Student Loss: 0.9808
+  Student Accuracy: 0.7856
+
+Performance Comparison (1000 test samples):
+  Teacher (Complex) Accuracy: 0.9503
+  Student (Simple) Accuracy: 0.7856
+  Performance Retention: 82.7%
+
+Architecture Comparison:
+  Teacher: Sparse Conv + SoftMax Pooling + Dense (2D input)
+  Student: Simple 3-Layer Dense Network (flattened input)
+  Parameter Reduction: 43.2%
+
+Model Size:
+  Compressed Student (.h5): 2.10 MB
+
+============================================================
+MODEL COMPRESSION COMPLETED SUCCESSFULLY!
+Complex sparse convolution model compressed to simple 3-layer dense network
+============================================================
+
+

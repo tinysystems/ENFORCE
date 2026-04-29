@@ -1,0 +1,203 @@
+Target classes: ('yes', 'no', 'up', 'down')
+Unknown classes (mapped to 'unknown'): ['tree', 'wow', 'learn', 'six', 'cat', 'two', 'bird', 'bed', 'right', 'forward']
+Creating zip archive at data.zip...
+Zipped dataset saved as: data.zip
+Cleaning up intermediate files to free memory...
+Cleanup complete. Only final zip kept.
+
+Summary:
+yes      -> Train: 2830, Val: 607, Test: 607
+no       -> Train: 2758, Val: 591, Test: 592
+up       -> Train: 2606, Val: 558, Test: 559
+down     -> Train: 2741, Val: 588, Test: 588
+unknown  -> Train: 17248, Val: 3696, Test: 3697
+
+Processing WAVs: 100%|██████████| 27653/27653 [40:06<00:00, 11.49it/s]  
+Cleaning up intermediate files to free memory...
+Cleanup complete. Only final zip kept.
+
+==================================================
+PROCESSING DETAILED SUMMARY
+==================================================
+Total WAV files found    : 27653
+Total files processed    : 27653
+Total files skipped      : 0
+Total valid segments     : 27583
+Classes found            : 5
+Label map                : {'no': 0, 'up': 1, 'down': 2, 'unknown': 3, 'yes': 4}
+Feature shape            : (27583, 40, 40)
+
+Saved dataset: dataset_kws_multi.npz
+==================================================
+
+Original dataset: (27583, 40, 40), classes: [0 1 2 3 4]
+Original class distribution: {0: 3929, 1: 3715, 2: 3908, 3: 11994, 4: 4037}
+
+============================================================
+DATA DISTRIBUTION ANALYSIS
+============================================================
+Class distribution:
+Train: {0: 2357, 1: 2229, 2: 2345, 3: 7196, 4: 2422}
+Val:   {0: 786, 1: 743, 2: 781, 3: 2399, 4: 808}
+Test:  {0: 786, 1: 743, 2: 782, 3: 2399, 4: 807}
+
+Data value ranges:
+Train: min=0.0000, max=1.0000, mean=0.2987
+Val:   min=0.0000, max=1.0000, mean=0.2994
+Test:  min=0.0000, max=1.0000, mean=0.2991
+
+Data shapes:
+Train: (16549, 40, 40, 1), Val: (5517, 40, 40, 1), Test: (5517, 40, 40, 1)
+
+Mean activation per sample:
+Train mean: 0.2987 ± 0.1436
+Val mean:   0.2994 ± 0.1442
+============================================================
+Unique values in y_train: [0 1 2 3 4]
+Unique values in y_val: [0 1 2 3 4]
+Unique values in y_test: [0 1 2 3 4]
+Train: (16549, 40, 40, 1), Val: (5517, 40, 40, 1), Test: (5517, 40, 40, 1)
+
+Model: "kws_dense_model"
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input (InputLayer)              │ (None, 1600)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (None, 256)            │       409,856 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout (Dropout)               │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_2 (Dense)                 │ (None, 256)            │        65,792 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_3 (Dense)                 │ (None, 256)            │        65,792 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_2 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ output (Dense)                  │ (None, 5)              │         1,285 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+
+Training with F1-score monitoring...
+Class weights: {0: 1.4042426813746287, 1: 1.48488111260655, 2: 1.4114285714285715, 3: 0.4599499722067815, 4: 1.3665565648224607}
+Epoch 1/100
+2025-09-05 18:53:26.056621: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:117] Plugin optimizer for device_type GPU is enabled.
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.2525 - f1_score: 0.2467 - loss: 6.2373
+Epoch 1: val_f1_score improved from None to 0.27461, saving model to best_f1_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+518/518 ━━━━━━━━━━━━━━━━━━━━ 21s 38ms/step - accuracy: 0.2667 - f1_score: 0.2615 - loss: 7.1965 - val_accuracy: 0.3150 - val_f1_score: 0.2746 - val_loss: 3.6429 - learning_rate: 0.0010
+Epoch 2/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.3012 - f1_score: 0.3003 - loss: 6.6549
+Epoch 2: val_f1_score did not improve from 0.27461
+518/518 ━━━━━━━━━━━━━━━━━━━━ 19s 37ms/step - accuracy: 0.2937 - f1_score: 0.2919 - loss: 10.5639 - val_accuracy: 0.2418 - val_f1_score: 0.2289 - val_loss: 32.4988 - learning_rate: 0.0010
+Epoch 3/100
+517/518 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.2779 - f1_score: 0.2691 - loss: 62.6183
+Epoch 3: val_f1_score improved from 0.27461 to 0.32401, saving model to best_f1_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+518/518 ━━━━━━━━━━━━━━━━━━━━ 19s 37ms/step - accuracy: 0.2751 - f1_score: 0.2702 - loss: 115.9454 - val_accuracy: 0.3583 - val_f1_score: 0.3240 - val_loss: 290.6952 - learning_rate: 0.0010
+Epoch 4/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.2839 - f1_score: 0.2780 - loss: 443.3184
+Epoch 4: val_f1_score did not improve from 0.32401
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 35ms/step - accuracy: 0.2809 - f1_score: 0.2771 - loss: 599.4100 - val_accuracy: 0.3085 - val_f1_score: 0.2750 - val_loss: 992.4051 - learning_rate: 0.0010
+Epoch 5/100
+517/518 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.2907 - f1_score: 0.2884 - loss: 1127.6433
+Epoch 5: val_f1_score did not improve from 0.32401
+518/518 ━━━━━━━━━━━━━━━━━━━━ 19s 36ms/step - accuracy: 0.2928 - f1_score: 0.2912 - loss: 1376.4335 - val_accuracy: 0.2895 - val_f1_score: 0.2724 - val_loss: 1842.7201 - learning_rate: 0.0010
+Epoch 6/100
+517/518 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.3075 - f1_score: 0.3054 - loss: 2173.0811
+Epoch 6: val_f1_score did not improve from 0.32401
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 34ms/step - accuracy: 0.2912 - f1_score: 0.2907 - loss: 2396.6404 - val_accuracy: 0.3063 - val_f1_score: 0.2749 - val_loss: 2578.1023 - learning_rate: 0.0010
+Epoch 7/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.2950 - f1_score: 0.2949 - loss: 3126.6448
+Epoch 7: val_f1_score did not improve from 0.32401
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 34ms/step - accuracy: 0.2929 - f1_score: 0.2920 - loss: 3759.9653 - val_accuracy: 0.2911 - val_f1_score: 0.2948 - val_loss: 4662.9932 - learning_rate: 0.0010
+Epoch 8/100
+517/518 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.2936 - f1_score: 0.2948 - loss: 5181.4019
+Epoch 8: ReduceLROnPlateau reducing learning rate to 0.00020000000949949026.
+
+Epoch 8: val_f1_score did not improve from 0.32401
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 35ms/step - accuracy: 0.2955 - f1_score: 0.2959 - loss: 5695.2134 - val_accuracy: 0.2735 - val_f1_score: 0.2497 - val_loss: 8356.4883 - learning_rate: 0.0010
+Epoch 9/100
+517/518 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.3257 - f1_score: 0.3286 - loss: 3910.7686
+Epoch 9: val_f1_score improved from 0.32401 to 0.36443, saving model to best_f1_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+518/518 ━━━━━━━━━━━━━━━━━━━━ 19s 36ms/step - accuracy: 0.3282 - f1_score: 0.3341 - loss: 2958.4736 - val_accuracy: 0.3612 - val_f1_score: 0.3644 - val_loss: 1011.1990 - learning_rate: 2.0000e-04
+Epoch 10/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.3243 - f1_score: 0.3306 - loss: 1591.7985
+Epoch 10: val_f1_score did not improve from 0.36443
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 35ms/step - accuracy: 0.3223 - f1_score: 0.3274 - loss: 1509.4919 - val_accuracy: 0.3348 - val_f1_score: 0.3166 - val_loss: 1260.2628 - learning_rate: 2.0000e-04
+Epoch 11/100
+517/518 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.3085 - f1_score: 0.3135 - loss: 1249.9504
+Epoch 11: val_f1_score did not improve from 0.36443
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 34ms/step - accuracy: 0.3041 - f1_score: 0.3085 - loss: 1247.7262 - val_accuracy: 0.3109 - val_f1_score: 0.3120 - val_loss: 1279.7086 - learning_rate: 2.0000e-04
+Epoch 12/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.2996 - f1_score: 0.3004 - loss: 1189.9122
+Epoch 12: val_f1_score did not improve from 0.36443
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 35ms/step - accuracy: 0.2968 - f1_score: 0.2986 - loss: 1135.9758 - val_accuracy: 0.3190 - val_f1_score: 0.3036 - val_loss: 924.8592 - learning_rate: 2.0000e-04
+Epoch 13/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.3022 - f1_score: 0.3041 - loss: 959.0510
+Epoch 13: val_f1_score did not improve from 0.36443
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 34ms/step - accuracy: 0.2971 - f1_score: 0.2977 - loss: 1016.9665 - val_accuracy: 0.2715 - val_f1_score: 0.2711 - val_loss: 1223.7648 - learning_rate: 2.0000e-04
+Epoch 14/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.2913 - f1_score: 0.2920 - loss: 1108.9430
+Epoch 14: ReduceLROnPlateau reducing learning rate to 4.0000001899898055e-05.
+
+Epoch 14: val_f1_score did not improve from 0.36443
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 34ms/step - accuracy: 0.2949 - f1_score: 0.2951 - loss: 1083.9888 - val_accuracy: 0.2931 - val_f1_score: 0.2944 - val_loss: 1143.6044 - learning_rate: 2.0000e-04
+Epoch 15/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.3289 - f1_score: 0.3331 - loss: 578.3398
+Epoch 15: val_f1_score did not improve from 0.36443
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 34ms/step - accuracy: 0.3257 - f1_score: 0.3300 - loss: 450.3680 - val_accuracy: 0.3556 - val_f1_score: 0.3345 - val_loss: 243.0944 - learning_rate: 4.0000e-05
+Epoch 16/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.3232 - f1_score: 0.3265 - loss: 259.3464
+Epoch 16: val_f1_score did not improve from 0.36443
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 34ms/step - accuracy: 0.3142 - f1_score: 0.3173 - loss: 252.2176 - val_accuracy: 0.2583 - val_f1_score: 0.2487 - val_loss: 265.5161 - learning_rate: 4.0000e-05
+Epoch 17/100
+517/518 ━━━━━━━━━━━━━━━━━━━━ 0s 30ms/step - accuracy: 0.3096 - f1_score: 0.3114 - loss: 221.0219
+Epoch 17: val_f1_score did not improve from 0.36443
+518/518 ━━━━━━━━━━━━━━━━━━━━ 21s 35ms/step - accuracy: 0.3003 - f1_score: 0.3018 - loss: 230.2874 - val_accuracy: 0.3569 - val_f1_score: 0.3508 - val_loss: 171.7995 - learning_rate: 4.0000e-05
+Epoch 18/100
+517/518 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.3013 - f1_score: 0.3031 - loss: 212.3262
+Epoch 18: val_f1_score did not improve from 0.36443
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 34ms/step - accuracy: 0.2942 - f1_score: 0.2943 - loss: 221.4719 - val_accuracy: 0.2664 - val_f1_score: 0.2844 - val_loss: 257.0983 - learning_rate: 4.0000e-05
+Epoch 19/100
+518/518 ━━━━━━━━━━━━━━━━━━━━ 0s 29ms/step - accuracy: 0.2957 - f1_score: 0.2949 - loss: 215.7535
+Epoch 19: ReduceLROnPlateau reducing learning rate to 8.000000525498762e-06.
+
+Epoch 19: val_f1_score did not improve from 0.36443
+518/518 ━━━━━━━━━━━━━━━━━━━━ 18s 34ms/step - accuracy: 0.2910 - f1_score: 0.2907 - loss: 212.1029 - val_accuracy: 0.2507 - val_f1_score: 0.2558 - val_loss: 183.3266 - learning_rate: 4.0000e-05
+Epoch 19: early stopping
+Restoring model weights from the end of the best epoch: 9.
+173/173 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step
+
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+============================================================
+TRAINING SUMMARY (F1-Score Focus)
+============================================================
+Total epochs trained: 19
+Final training F1-score: 0.2907
+Final validation F1-score: 0.2558
+Best validation F1-score: 0.3644
+Final training accuracy: 0.2910
+Final validation accuracy: 0.2507
+Final training loss: 212.1029
+Final validation loss: 183.3266
+
+Test Set Performance:
+              precision    recall  f1-score   support
+
+          no       0.25      0.68      0.36       786
+          up       0.57      0.41      0.47       743
+        down       0.19      0.17      0.18       782
+     unknown       0.53      0.17      0.26      2399
+         yes       0.44      0.75      0.56       807
+
+    accuracy                           0.36      5517
+   macro avg       0.40      0.43      0.37      5517
+weighted avg       0.43      0.36      0.33      5517
+
+
+Overall Weighted F1-Score on Test Set: 0.3339
+Model saved as 'kws_multi_cnn_model.h5'

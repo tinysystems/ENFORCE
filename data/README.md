@@ -1,0 +1,3 @@
+# Dataset
+
+The dataset used for training of these models is in the main repository page with a link to a npz file. It consists of 136k 1-sec raw data audios captured via 16kHz frequency, that were previously transformed via an MFE block into a log-mel spectrogram (image that represents relevant features of that audio), which is gave in input as it is in the teacher model, instead in the other ones it is flatten. To insert a custom audio an make coherent, it first should converted using the python code "spectrogram.py" or c code "spectrogram.c". It is important to note that is provided the logical functions, so the code has to be adapted to the users input. The link to the dataset and the conversion codes are in data/ folder.
